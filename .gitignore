@@ -1,5 +1,5 @@
 
 /backend/target
-/frontend/dist
+/frontend/build
 /**/.idea
 /frontend/node_modules
