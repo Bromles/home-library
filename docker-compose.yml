@@ -64,7 +64,7 @@ services:
           memory: 512M
 
   frontend:
-    container_name: react
+    container_name: compose
     build: frontend/
     ports:
       -
