@@ -26,12 +26,14 @@ kotlin {
     sourceSets {
         val jsMain by getting {
             dependencies {
+                implementation(project(":common"))
                 implementation(compose.web.core)
                 implementation(compose.runtime)
             }
         }
         val jsTest by getting {
             dependencies {
+                implementation(project(":common"))
                 implementation(kotlin("test-js"))
             }
         }

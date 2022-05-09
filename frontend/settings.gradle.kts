@@ -17,4 +17,7 @@ pluginManagement {
 
 rootProject.name = "compose"
 
-include(":android", ":desktop", ":jsMain", ":common")
+include(":android")
+include(":desktop")
+include(":jsMain")
+include(":common")

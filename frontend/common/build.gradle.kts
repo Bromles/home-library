@@ -10,18 +10,22 @@ group = "org.bromles"
 version = "1.0-SNAPSHOT"
 
 kotlin {
-    android()
-    jvm("desktop") {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
+    targets {
+        android()
+        jvm("desktop") {
+            compilations.all {
+                kotlinOptions.jvmTarget = "11"
+            }
+        }
+        js(IR) {
+            browser()
+            binaries.executable()
         }
     }
     sourceSets {
         val commonMain by getting {
             dependencies {
                 api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
             }
         }
         val commonTest by getting {
@@ -40,24 +44,24 @@ kotlin {
                 implementation("junit:junit:4.13")
             }
         }
-        val desktopMain by getting {
-            dependencies {
-                api(compose.preview)
-            }
-        }
+        val desktopMain by getting
         val desktopTest by getting
+        val jsMain by getting
+        val jsTest by getting
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 android {
-    compileSdkVersion(31)
+    compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(31)
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        minSdk = 21
+        targetSdk = 31
     }
 }
