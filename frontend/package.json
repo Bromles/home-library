@@ -10,14 +10,23 @@
     "tauri-dev": "tauri dev"
   },
   "dependencies": {
+    "@meilisearch/instant-meilisearch": "^0.7.1",
     "@tauri-apps/api": "^1.0.1",
+    "mobx": "^6.6.1",
+    "mobx-react-lite": "^3.4.0",
+    "primeicons": "^5.0.0",
+    "primereact": "^8.1.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-instantsearch-dom": "^6.29.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-instantsearch-dom": "^6.12.3",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^1.3.0",
     "typescript": "^4.6.3",
     "vite": "^2.9.9"
