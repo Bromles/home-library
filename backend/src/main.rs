@@ -12,9 +12,10 @@ async fn main() -> std::io::Result<()> {
             App::new()
                 .service(home)
         )
-            .bind(("127.0.0.1", 8080))?;
+            .bind(("127.0.0.1", 8080))?
+            .run();
 
     println!("Server is running!");
 
-    server.run().await
+    server.await
 }
