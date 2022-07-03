@@ -39,12 +39,10 @@ fn init_db() -> Pool<ConnectionManager<PgConnection>> {
 async fn main() -> std::io::Result<()> {
     dotenv::dotenv().ok();
 
-    let pool = init_db();
-
     let server =
         HttpServer::new(move ||
             App::new()
-                .app_data(web::Data::new(pool.clone()))
+                .app_data(web::Data::new(init_db().clone()))
                 .service(home)
         )
             .bind(("0.0.0.0", 8080))?
