@@ -1,17 +1,18 @@
-mod models;
-mod schema;
-
 #[macro_use]
 extern crate diesel;
 #[macro_use]
 extern crate diesel_migrations;
 
 use std::ops::Deref;
-use actix_web::{get, web, App, HttpServer, Responder};
+
+use actix_web::{App, get, HttpServer, Responder, web};
 use diesel::PgConnection;
 use diesel::r2d2::ConnectionManager;
 use diesel_migrations::embed_migrations;
 use r2d2::Pool;
+
+mod models;
+mod schema;
 
 embed_migrations!();
 
