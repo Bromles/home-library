@@ -20,9 +20,7 @@ async fn home() -> impl Responder {
     "Hello World!"
 }
 
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    dotenv::dotenv().ok();
+fn init_db() -> Pool<ConnectionManager<PgConnection>> {
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     let manager = ConnectionManager::<PgConnection>::new(database_url);
@@ -32,6 +30,15 @@ async fn main() -> std::io::Result<()> {
 
     embedded_migrations::run(pool.get().expect("Failed to get connection from pool").deref())
         .expect("Failed to run migrations");
+
+    pool
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    dotenv::dotenv().ok();
+
+    let pool = init_db();
 
     let server =
         HttpServer::new(move ||
