@@ -12,7 +12,7 @@ pub(crate) fn init_db() -> Pool<ConnectionManager<PgConnection>> {
 
     let manager = ConnectionManager::<PgConnection>::new(database_url);
     let pool = Pool::builder()
-        .max_size(5)
+        .max_size(num_cpus::get_physical() as u32)
         .build(manager)
         .expect("Failed to create pool");
 

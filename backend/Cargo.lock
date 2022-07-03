@@ -267,6 +267,7 @@ dependencies = [
  "diesel_migrations",
  "dotenv",
  "meilisearch-sdk",
+ "num_cpus",
  "r2d2",
  "serde",
  "serde_json",

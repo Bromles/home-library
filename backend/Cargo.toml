@@ -16,3 +16,4 @@ r2d2 = "0.8.10"
 serde_json = "1.0.82"
 dotenv = "0.15.0"
 chrono = { version = "0.4.19", features = ["serde"] }
+num_cpus = { version = "1.13.0" }
