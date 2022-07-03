@@ -5,21 +5,19 @@ extern crate diesel_migrations;
 
 use std::ops::Deref;
 
-use actix_web::{App, get, HttpServer, Responder, web};
+use actix_web::{App, HttpServer, web};
 use diesel::PgConnection;
 use diesel::r2d2::ConnectionManager;
 use diesel_migrations::embed_migrations;
 use r2d2::Pool;
 
+use crate::handlers::home;
+
 mod models;
 mod schema;
+mod handlers;
 
 embed_migrations!();
-
-#[get("/")]
-async fn home() -> impl Responder {
-    "Hello World!"
-}
 
 fn init_db() -> Pool<ConnectionManager<PgConnection>> {
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
