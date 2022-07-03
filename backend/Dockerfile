@@ -1,13 +1,15 @@
-FROM rust as build
+FROM rust:1.62.0-slim-buster as builder
 
 # create a new empty shell project
-RUN USER=root cargo new --bin library
-WORKDIR /library
+RUN USER=root cargo new --bin app
+WORKDIR /app
 
 # copy over your manifests
-COPY ./Cargo.lock ./Cargo.lock
-COPY ./Cargo.toml ./Cargo.toml
+COPY ./Cargo.lock .
+COPY ./Cargo.toml .
 
+RUN apt-get update
+RUN apt-get install -y pkg-config libssl-dev
 # this build step will cache your dependencies
 RUN cargo build --release
 RUN rm src/*.rs
@@ -16,14 +18,15 @@ RUN rm src/*.rs
 COPY ./src ./src
 
 # build for release
-RUN rm ./target/release/deps/library*
+RUN rm ./target/release/deps/backend*
 RUN cargo build --release
 
 # our final base
-FROM debian:bullseye-slim
+FROM debian:11.3-slim
 
 # copy the build artifact from the build stage
-COPY --from=build /library/target/release/library .
+COPY --from=builder /app/target/release/backend .
 
+EXPOSE 8080
 # set the startup command to run your binary
-CMD ["./library"]
+CMD ["./backend"]

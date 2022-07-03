@@ -2,16 +2,14 @@ version: '3.7'
 
 services:
   database:
-    container_name: postgres
-    image: postgres
+    container_name: database
+    image: postgres:14.4
     volumes:
-      - postgres_data:/home/bromles/Dev/Projects/Java/db_spbstu/data/pgsql
+      - postgres_data:$$(pwd)/data/pgsql
     environment:
       POSTGRES_USER: keycloak
       POSTGRES_PASSWORD: password
       POSTGRES_DB: keycloak_db
-    ports:
-      - '5433:5432'
     restart: unless-stopped
     deploy:
       resources:
@@ -19,10 +17,10 @@ services:
           memory: 512M
 
   search_engine:
-    container_name: meilisearch
-    image: getmeili/meilisearch:latest
+    container_name: search_engine
+    image: getmeili/meilisearch:v0.27.2
     volumes:
-      -
+      - meili_data:$$(pwd)/data/meili_data
     depends_on:
       - database
     deploy:
@@ -31,8 +29,8 @@ services:
           memory: 512M
 
   auth_server:
-    container_name: keycloak
-    image: quay.io/keycloak/keycloak:17.0.1
+    container_name: auth_server
+    image: quay.io/keycloak/keycloak:18.0.2
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -52,7 +50,7 @@ services:
     restart: unless-stopped
 
   backend:
-    container_name: actix-web
+    container_name: backend
     build: backend/
     depends_on:
       - database
@@ -64,13 +62,17 @@ services:
           memory: 512M
 
   frontend:
-    container_name: compose
+    container_name: frontend
     build: frontend/
     ports:
-      -
+      - '8123:80'
     depends_on:
       - backend
     deploy:
       resources:
         limits:
           memory: 512M
+
+volumes:
+  postgres_data:
+  meili_data:
