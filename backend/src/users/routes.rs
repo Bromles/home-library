@@ -1,6 +1,10 @@
-use actix_web::{get, Responder};
+use actix_web::{get, Responder, web};
 
 #[get("/")]
-pub async fn home() -> impl Responder {
+pub(crate) async fn home() -> impl Responder {
     "Hello World!"
+}
+
+pub(crate) fn init_routes(cfg: &mut web::ServiceConfig) {
+    cfg.service(home);
 }
