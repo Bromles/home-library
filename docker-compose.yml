@@ -28,6 +28,8 @@ services:
     depends_on:
       - database
     restart: unless-stopped
+    ports:
+      - "7123:7070"
     deploy:
       resources:
         limits:
