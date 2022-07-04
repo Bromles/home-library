@@ -5,7 +5,7 @@ use crate::schema::*;
 
 #[derive(Serialize, Deserialize, Queryable, Debug)]
 pub struct User {
-    pub id: i32,
+    pub id: i64,
     pub login: String,
     pub email: String,
     pub created_at: chrono::NaiveDateTime,
