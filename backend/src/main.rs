@@ -2,6 +2,8 @@
 extern crate diesel;
 #[macro_use]
 extern crate diesel_migrations;
+#[macro_use]
+extern crate log;
 
 use actix_web::{App, HttpServer, web};
 
@@ -17,6 +19,7 @@ mod search_engine;
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv::dotenv().ok();
+    env_logger::init();
 
     let pool = init_db();
     let client = init_engine();
@@ -31,7 +34,7 @@ async fn main() -> std::io::Result<()> {
             .bind(("0.0.0.0", 8080))?
             .run();
 
-    println!("Server is running!");
+    info!("Server is running!");
 
     server.await
 }

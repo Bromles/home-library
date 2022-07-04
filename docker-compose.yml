@@ -63,6 +63,8 @@ services:
     build: backend/
     environment:
       DATABASE_URL: "postgres://bromles:password@database/backend_db"
+      SEARCH_ENGINE_URL: "http://search_engine:7070"
+      SEARCH_ENGINE_KEY: "masterKey"
     depends_on:
       - database
       - search_engine

@@ -19,7 +19,7 @@ pub(crate) fn init_db() -> Pool<ConnectionManager<PgConnection>> {
     embedded_migrations::run(pool.get().expect("Failed to get connection from pool").deref())
         .expect("Failed to run migrations");
 
-    println!("Migrations are applied");
+    info!("Migrations are applied");
 
     pool
 }
