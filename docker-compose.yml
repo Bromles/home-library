@@ -6,12 +6,15 @@ services:
     image: postgres:14.4
     volumes:
       - db-data:/var/lib/postgresql/data
+      - ./docker_multiple_databases:/docker-entrypoint-initdb.d
     shm_size: 256mb
     environment:
-      POSTGRES_USER: keycloak
+      POSTGRES_USER: bromles
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: keycloak_db
+      POSTGRES_MULTIPLE_DATABASES: keycloak_db,backend_db
     restart: unless-stopped
+    ports:
+      - "5433:5432"
     deploy:
       resources:
         limits:
@@ -37,10 +40,10 @@ services:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
       DB_DATABASE: keycloak_db
-      DB_USER: keycloak
+      DB_USER: bromles
       DB_PASSWORD: password
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin_password
+      KEYCLOAK_ADMIN: bromles
+      KEYCLOAK_ADMIN_PASSWORD: password
     ports:
       - '8099:8080'
     command:
@@ -57,7 +60,7 @@ services:
     container_name: backend
     build: backend/
     environment:
-      DATABASE_URL: "postgres://postgres:postgres@database/web-library"
+      DATABASE_URL: "postgres://bromles:password@database/backend_db"
     depends_on:
       - database
       - search_engine
