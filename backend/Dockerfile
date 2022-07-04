@@ -4,12 +4,13 @@ FROM rust:1.62.0-slim-bullseye as builder
 RUN USER=root cargo new --bin app
 WORKDIR /app
 
+RUN apt-get update
+RUN apt-get install -y pkg-config libssl-dev libpq-dev
+
 # copy over your manifests
 COPY ./Cargo.lock .
 COPY ./Cargo.toml .
 
-RUN apt-get update
-RUN apt-get install -y pkg-config libssl-dev libpq-dev
 # this build step will cache your dependencies
 RUN cargo build --release
 RUN rm src/*.rs
