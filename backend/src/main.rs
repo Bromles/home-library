@@ -12,7 +12,7 @@ use meilisearch_sdk::client::Client;
 use r2d2::Pool;
 
 use crate::db::init_db_pool_and_migrate;
-use crate::search_engine::init_search_engine;
+use crate::search_engine::init_search_engine_client;
 use crate::users::routes::init_routes;
 
 mod schema;
@@ -32,7 +32,7 @@ async fn main() -> std::io::Result<()> {
 
     let app_state = web::Data::new(AppState {
         db_pool: init_db_pool_and_migrate(),
-        search_client: init_search_engine(),
+        search_client: init_search_engine_client(),
     });
 
     let server =
