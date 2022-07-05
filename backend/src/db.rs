@@ -7,7 +7,7 @@ use r2d2::Pool;
 
 embed_migrations!();
 
-pub(crate) fn init_db() -> Pool<ConnectionManager<PgConnection>> {
+pub(crate) fn init_db_pool_and_migrate() -> Pool<ConnectionManager<PgConnection>> {
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     let manager = ConnectionManager::<PgConnection>::new(database_url);
