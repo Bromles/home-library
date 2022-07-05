@@ -28,8 +28,11 @@ services:
     depends_on:
       - database
     restart: unless-stopped
+    environment:
+      MEILI_MASTER_KEY: masterKey
+      MEILI_NO_ANALYTICS: "true"
     ports:
-      - "7123:7070"
+      - "7123:7700"
     deploy:
       resources:
         limits:
