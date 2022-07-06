@@ -59,7 +59,10 @@ async fn main() -> std::io::Result<()> {
     .bind_rustls(("0.0.0.0", https_port), init_rustls_config())?
     .run();
 
-    info!("Server is running!");
+    info!(
+        "Server is running on ports http:{} and https:{}",
+        http_port, https_port
+    );
 
     server.await
 }
