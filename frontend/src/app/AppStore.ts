@@ -5,7 +5,7 @@ class Store {
 
     constructor() {
         makeAutoObservable(this);
-        this._useDarkTheme = false;
+        this._useDarkTheme = true;
     }
 
     public get useDarkTheme() {

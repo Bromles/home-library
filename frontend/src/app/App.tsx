@@ -1,8 +1,17 @@
-import {useState} from 'react'
-import logo from '../logo.svg'
-import styles from './App.module.css'
-import globalStore from "./GlobalStore";
+import {useState} from 'react';
+import logo from '../logo.svg';
+import styles from './App.module.css';
+import store from "./AppStore";
 import {observer} from "mobx-react-lite";
+import {Button} from "primereact/button";
+
+if (store.useDarkTheme) {
+    await import('primereact/resources/themes/lara-dark-teal/theme.css')
+} else {
+    await import('primereact/resources/themes/lara-light-teal/theme.css')
+}
+
+import "primeicons/primeicons.css";
 
 const App = observer(() => {
     const [count, setCount] = useState(0)
@@ -17,11 +26,11 @@ const App = observer(() => {
                         count is: {count}
                     </button>
                 </p>
-                <p>
-                    <button type="button" onClick={() => globalStore.useDarkTheme = !globalStore.useDarkTheme}>
-                        Toggle dark mode: {`${globalStore.useDarkTheme}`}
-                    </button>
-                </p>
+                <div>
+                    <Button label="Toggle dark mode" className="p-button-outlined"
+                            onClick={() => store.useDarkTheme = !store.useDarkTheme}>
+                    </Button>
+                </div>
                 <p>
                     Edit <code>App.tsx</code> and save to test HMR updates.
                 </p>
