@@ -1,42 +1,46 @@
 .app {
-  text-align: center;
+    text-align: center;
 }
 
 .appLogo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .appLogo {
-    animation: appLogoSpin infinite 20s linear;
-  }
+    .appLogo {
+        animation: appLogoSpin infinite 20s linear;
+    }
+}
+
+.themeButton p-button-label {
+    display: none;
 }
 
 .appHeader {
-  background-color: var(--surface-ground);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-color);
+    background-color: var(--surface-ground);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: var(--text-color);
 }
 
 .appLink {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 @keyframes appLogoSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 button {
-  font-size: calc(10px + 2vmin);
+    font-size: calc(10px + 2vmin);
 }

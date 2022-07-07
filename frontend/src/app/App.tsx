@@ -12,6 +12,7 @@ if (store.useDarkTheme) {
 }
 
 import "primeicons/primeicons.css";
+import {PrimeIcons} from "primereact/api";
 
 const App = observer(() => {
     const [count, setCount] = useState(0)
@@ -27,7 +28,8 @@ const App = observer(() => {
                     </button>
                 </p>
                 <div>
-                    <Button label="Toggle dark mode" className="p-button-outlined"
+                    <Button icon={store.useDarkTheme ? PrimeIcons.SUN : PrimeIcons.MOON}
+                            className="themeButton p-button-outlined"
                             onClick={() => store.useDarkTheme = !store.useDarkTheme}>
                     </Button>
                 </div>
