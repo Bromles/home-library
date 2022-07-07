@@ -13,8 +13,8 @@
     }
 }
 
-.themeButton p-button-label {
-    display: none;
+.appThemeButton :nth-child(2) {
+    display: none !important;
 }
 
 .appHeader {
