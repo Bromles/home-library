@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import logo from "../logo.svg";
+import logo from "../../logo.svg";
 
 export const Home = () => {
     return (

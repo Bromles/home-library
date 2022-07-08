@@ -1,5 +1,5 @@
 import {observer} from "mobx-react-lite";
-import store from "../AppStore";
+import store from "../../AppStore";
 import styles from "./Navbar.module.css";
 import {Button} from "primereact/button";
 import {PrimeIcons} from "primereact/api";
