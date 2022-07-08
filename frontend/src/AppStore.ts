@@ -1,12 +1,12 @@
 import {makeAutoObservable} from "mobx";
 
 class Store {
-    private _useDarkTheme: boolean;
-
     constructor() {
         makeAutoObservable(this);
         this._useDarkTheme = true;
     }
+
+    private _useDarkTheme: boolean;
 
     public get useDarkTheme() {
         return this._useDarkTheme;

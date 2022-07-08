@@ -1,0 +1,17 @@
+.appThemeButton :nth-child(2) {
+    display: none !important;
+}
+
+.navbar {
+    background-color: var(--surface-overlay);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.appLink {
+    color: var(--primary-color);
+}

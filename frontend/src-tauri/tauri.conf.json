@@ -1,8 +1,8 @@
 {
   "$schema": "..\\node_modules/@tauri-apps/cli\\schema.json",
   "build": {
-    "beforeBuildCommand": "npm run build",
-    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "yarn run build",
+    "beforeDevCommand": "yarn run dev",
     "devPath": "http://localhost:3000",
     "distDir": "../dist"
   },
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "org.bromles.web-library",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

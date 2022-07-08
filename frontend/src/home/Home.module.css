@@ -13,9 +13,6 @@
     }
 }
 
-.appThemeButton :nth-child(2) {
-    display: none !important;
-}
 
 .appHeader {
     background-color: var(--surface-ground);

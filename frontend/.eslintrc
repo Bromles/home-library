@@ -21,7 +21,9 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "semi": "off",
-    "@typescript-eslint/semi": [ "error" ],
+    "@typescript-eslint/semi": [
+      "error"
+    ],
     "@typescript-eslint/member-delimiter-style": [
       "warn",
       {
