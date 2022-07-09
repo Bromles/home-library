@@ -7,6 +7,7 @@ export const Home = () => {
             <header className={styles.appHeader}>
                 <img src={logo} className={styles.appLogo} alt="logo"/>
                 <p>Hello Vite + React!</p>
+                <p>{`${window.location}`}</p>
                 <p>
                     <a
                         className={styles.appLink}

@@ -58,9 +58,9 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
+        "center": true,
         "title": "Web Library",
-        "width": 800,
-        "skipTaskbar": true
+        "width": 800
       }
     ]
   }
