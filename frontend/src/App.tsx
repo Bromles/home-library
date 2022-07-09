@@ -1,20 +1,22 @@
 import {Navbar} from "./components/navbar/Navbar";
 import {Outlet} from "react-router-dom";
-import {useCallback, useEffect} from "react";
+import {useEffect} from "react";
 
 export const App = () => {
-    const disableMenu = useCallback(() => {
+    useEffect(() => {
         if (window.location.hostname !== 'tauri.localhost' && window.location.protocol !== 'tauri:') {
             return
         }
 
-        document.addEventListener('contextmenu', e => {
+        function contextMenuListener(e: Event) {
             e.preventDefault();
             return false;
-        }, { capture: true })
-    }, []);
+        }
 
-    useEffect(() => disableMenu(), []);
+        document.addEventListener('contextmenu', contextMenuListener, {capture: true})
+
+        return () => document.removeEventListener('contextmenu', contextMenuListener);
+    }, []);
 
     return (
         <>
