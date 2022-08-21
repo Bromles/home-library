@@ -8,20 +8,21 @@ group "com.bromles"
 version "1.0-SNAPSHOT"
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
     implementation(project(":common"))
-    implementation("androidx.activity:activity-compose:1.3.0")
+    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha16")
 }
 
 android {
-    compileSdkVersion(31)
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.bromles.android"
-        minSdkVersion(24)
-        targetSdkVersion(31)
+        minSdk = 24
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0-SNAPSHOT"
     }
