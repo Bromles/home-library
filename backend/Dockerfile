@@ -30,6 +30,8 @@ RUN apt-get install -y libpq5
 
 # copy the build artifact from the build stage
 COPY --from=builder /app/target/release/backend .
+COPY localhost-cert.pem .
+COPY localhost-key.pem .
 
 EXPOSE 8080
 # set the startup command to run your binary
