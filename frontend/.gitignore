@@ -1,11 +1,12 @@
 .gradle
 gradle
 build/
-.pnp.loader.mjs
+web/.pnp.loader.mjs
 .pnp.cjs
-.yarnrc.yml
+web/.yarnrc.yml
 .yarn
 target
+node_modules
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
