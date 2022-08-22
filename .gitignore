@@ -1,4 +1,8 @@
 build
+.yarn
+.gradle
+gradlew
+gradlew.bat
 /backend/target
 /frontend/build
 /**/.idea
