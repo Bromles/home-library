@@ -4,6 +4,7 @@ build/
 web/.pnp.loader.mjs
 .pnp.cjs
 web/.yarnrc.yml
+local.properties
 .yarn
 target
 node_modules
