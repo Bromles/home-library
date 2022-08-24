@@ -14,7 +14,7 @@ repositories {
 dependencies {
     implementation(project(":common"))
     implementation("androidx.activity:activity-compose:1.5.1")
-    implementation("androidx.compose.material:material:1.3.0-alpha03")
+    implementation("androidx.compose.material:material:1.2.1")
 }
 
 android {

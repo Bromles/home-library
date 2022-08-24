@@ -1,7 +1,7 @@
 package com.bromles.common
 
-import androidx.compose.material.Text
 import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,9 +13,13 @@ fun App() {
     var text by remember { mutableStateOf("Hello, World!") }
     val platformName = getPlatformName()
 
-    Button(onClick = {
-        text = "Hello, $platformName"
-    }) {
-        Text(text)
+    CustomTheme(
+        windowSize = LocalWindowSize.current
+    ) {
+        Button(onClick = {
+            text = "Hello, $platformName"
+        }) {
+            Text(text)
+        }
     }
 }
