@@ -15,6 +15,7 @@ dependencies {
     implementation(project(":common"))
     implementation("androidx.activity:activity-compose:1.5.1")
     implementation("androidx.compose.material:material:1.2.1")
+    implementation("androidx.window:window:1.0.0")
 }
 
 android {

@@ -9,12 +9,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
 @Composable
-fun App() {
+fun App(windowSize: WindowSize) {
     var text by remember { mutableStateOf("Hello, World!") }
     val platformName = getPlatformName()
 
     CustomTheme(
-        windowSize = LocalWindowSize.current
+        windowSize = windowSize
     ) {
         Button(onClick = {
             text = "Hello, $platformName"
