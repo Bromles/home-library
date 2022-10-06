@@ -1,0 +1,41 @@
+server:
+  port: ${PORT:8445}
+
+home_library:
+  search_engine:
+    url: ${SEARCH_ENGINE_URL:}
+    key: ${SEARCH_ENGINE_KEY:}
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${AUTH_SERVER_URL:}
+  main:
+    banner-mode: off
+  sql:
+    init:
+      platform: ${PLATFORM:postgres}
+  datasource:
+    url: ${DB_URL:}
+    username: ${DB_USERNAME:}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: ${DB_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+        format_sql: true
+  liquibase:
+    change-log: classpath:db/changelog/changelog.yaml
+
+logging:
+  file:
+    name: logs/proxy.log
+  level:
+    web: info
+    org.springframework: info
+    org.springframework.boot.autoconfigure: error
+    org.hibernate: info
