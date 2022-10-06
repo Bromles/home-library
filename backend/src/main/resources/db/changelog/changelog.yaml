@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: lib.1
+      author: ushakov
+      changes:
+        - createTable:
+            tableName: proxy_setting
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+  - changeSet:
+      id: lib.2
+      author: ushakov
+      changes:
+        - dropTable:
+            tableName: proxy_setting

@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
 RUN yarn
-COPY .. .
+COPY . .
 RUN npm run build
 
 # production environment
