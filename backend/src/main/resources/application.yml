@@ -22,7 +22,7 @@ spring:
     banner-mode: off
   sql:
     init:
-      platform: ${PLATFORM:postgres}
+      platform: ${DB_PLATFORM:postgres}
   datasource:
     url: ${DB_URL:}
     username: ${DB_USERNAME:}
