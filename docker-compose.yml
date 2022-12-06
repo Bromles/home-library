@@ -40,7 +40,7 @@ services:
 
   auth_server:
     container_name: auth_server
-    image: quay.io/keycloak/keycloak:19.0.3
+    image: quay.io/keycloak/keycloak:20.0.1
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres

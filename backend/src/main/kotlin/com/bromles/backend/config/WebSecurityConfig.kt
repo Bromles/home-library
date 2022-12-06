@@ -53,17 +53,17 @@ class WebSecurityConfig {
     fun jwtGrantedAuthoritiesConverter(): Converter<Jwt?, Collection<GrantedAuthority?>?> {
         val delegate = JwtGrantedAuthoritiesConverter()
 
-        return Converter { jwtNull: Jwt? ->
+        return JwtGrantedAuthorityConverter { jwtNull: Jwt? ->
             jwtNull?.let { jwt ->
                 val grantedAuthorities = delegate.convert(jwt)
 
                 if (jwt.claims["realm_access"] == null) {
-                    return@Converter grantedAuthorities
+                    return@JwtGrantedAuthorityConverter grantedAuthorities
                 }
 
                 val realmAccess: JSONObject = jwt.claims["realm_access"] as JSONObject
                 if (realmAccess["roles"] == null) {
-                    return@Converter grantedAuthorities
+                    return@JwtGrantedAuthorityConverter grantedAuthorities
                 }
 
                 val roles: JSONArray = realmAccess["roles"] as JSONArray
@@ -77,3 +77,5 @@ class WebSecurityConfig {
         }
     }
 }
+
+fun interface JwtGrantedAuthorityConverter : Converter<Jwt?, Collection<GrantedAuthority?>?>
