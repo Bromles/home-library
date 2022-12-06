@@ -1,26 +1,13 @@
-import {Navbar} from "./components/navbar/Navbar";
+import {Topbar} from "./components/topbar/Topbar";
 import {Outlet} from "react-router-dom";
-import {useEffect} from "react";
+import {useDesktop} from "./hooks/useDesktop";
 
 export const App = () => {
-    useEffect(() => {
-        if (window.location.hostname !== 'tauri.localhost' && window.location.protocol !== 'tauri:') {
-            return
-        }
-
-        function contextMenuListener(e: Event) {
-            e.preventDefault();
-            return false;
-        }
-
-        document.addEventListener('contextmenu', contextMenuListener, {capture: true})
-
-        return () => document.removeEventListener('contextmenu', contextMenuListener);
-    }, []);
+    useDesktop();
 
     return (
         <>
-            <Navbar/>
+            <Topbar/>
             <Outlet/>
         </>
     )
