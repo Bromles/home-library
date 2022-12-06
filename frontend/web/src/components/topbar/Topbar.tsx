@@ -1,10 +1,10 @@
 import {observer} from "mobx-react-lite";
-import store from "../../AppStore";
 import styles from "./Topbar.module.css";
 import {Button} from "primereact/button";
 import {PrimeIcons} from "primereact/api";
-import {useCallback} from "react";
+import {useCallback, useContext} from "react";
 import {Link} from "react-router-dom";
+import {AppStoreContext} from "../../App";
 
 export const Topbar = observer(() => {
     return (
@@ -16,6 +16,8 @@ export const Topbar = observer(() => {
 })
 
 const ThemeToggle = observer(() => {
+    const store = useContext(AppStoreContext);
+
     const changeTheme = useCallback(() => {
         const link = document.getElementById('app-theme')
         store.useDarkTheme = !store.useDarkTheme;

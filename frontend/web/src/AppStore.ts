@@ -1,9 +1,9 @@
 import {makeAutoObservable} from "mobx";
 
-class Store {
-    constructor() {
+export class AppStore {
+    constructor(isDarkTheme: boolean) {
         makeAutoObservable(this);
-        this._useDarkTheme = true;
+        this._useDarkTheme = isDarkTheme;
     }
 
     private _useDarkTheme: boolean;
@@ -16,5 +16,3 @@ class Store {
         this._useDarkTheme = value;
     }
 }
-
-export default new Store();
