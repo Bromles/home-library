@@ -7,3 +7,4 @@ gradlew.bat
 /frontend/build
 /**/.idea
 /frontend/node_modules
+backend/.env

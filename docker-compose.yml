@@ -40,7 +40,7 @@ services:
 
   auth_server:
     container_name: auth_server
-    image: quay.io/keycloak/keycloak:19.0.3
+    image: quay.io/keycloak/keycloak:20.0.1
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -70,7 +70,13 @@ services:
       DB_PASSWORD: "password"
       SEARCH_ENGINE_URL: "http://search_engine:7070"
       SEARCH_ENGINE_KEY: "masterKey"
-      AUTH_SERVER_URL: "http://auth_server:8080/auth/realms/master/protocol/openid-connect/certs"
+      AUTH_SERVER_JWKS_URL: "http://auth_server:8080/auth/realms/master/protocol/openid-connect/certs"
+      AUTH_SERVER_URL: "http://auth_server:8080"
+      AUTH_SERVER_GRANT_TYPE: "client_credentials"
+      AUTH_SERVER_REALM: "master"
+      AUTH_SERVER_CLIENT_ID: "backend"
+    env_file:
+      - backend/.env
     depends_on:
       - database
       - search_engine
