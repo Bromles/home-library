@@ -76,7 +76,7 @@ services:
       AUTH_SERVER_REALM: "master"
       AUTH_SERVER_CLIENT_ID: "backend"
     env_file:
-      - .env
+      - backend/.env
     depends_on:
       - database
       - search_engine
