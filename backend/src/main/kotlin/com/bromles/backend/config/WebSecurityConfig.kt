@@ -77,5 +77,3 @@ class WebSecurityConfig {
         }
     }
 }
-
-fun interface JwtGrantedAuthorityConverter : Converter<Jwt?, Collection<GrantedAuthority?>?>
