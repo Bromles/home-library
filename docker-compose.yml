@@ -75,7 +75,8 @@ services:
       AUTH_SERVER_GRANT_TYPE: "client_credentials"
       AUTH_SERVER_REALM: "master"
       AUTH_SERVER_CLIENT_ID: "backend"
-      AUTH_SERVER_CLIENT_SECRET: "HdlxzLf3o1EzBcp6oPIo6TgoBqNLldQc"
+    env_file:
+      - .env
     depends_on:
       - database
       - search_engine
