@@ -22,7 +22,7 @@ services:
 
   search_engine:
     container_name: search_engine
-    image: getmeili/meilisearch:v0.27.2
+    image: getmeili/meilisearch:v0.30
     volumes:
       - meili_data:/data/meili_data
     depends_on:
