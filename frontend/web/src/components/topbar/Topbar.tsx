@@ -5,6 +5,7 @@ import {PrimeIcons} from "primereact/api";
 import {useCallback, useContext} from "react";
 import {Link} from "react-router-dom";
 import {AppStoreContext} from "../../App";
+import {themeChanger} from "../../utils/themeChanger";
 
 export const Topbar = observer(() => {
     return (
@@ -17,17 +18,15 @@ export const Topbar = observer(() => {
 
 const ThemeToggle = observer(() => {
     const store = useContext(AppStoreContext);
-
-    const changeTheme = useCallback(() => {
-        const link = document.getElementById('app-theme')
+    const themeChangeHandler = useCallback(() => {
         store.useDarkTheme = !store.useDarkTheme;
-        link?.setAttribute('href', store.useDarkTheme ? '/theme-dark.css' : '/theme-light.css')
+        themeChanger(store)
     }, [store])
 
     return (
         <Button icon={store.useDarkTheme ? PrimeIcons.SUN : PrimeIcons.MOON}
                 className={styles.appThemeButton}
-                onClick={changeTheme}>
+                onClick={themeChangeHandler}>
         </Button>
     )
 })
