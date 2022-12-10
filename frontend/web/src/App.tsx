@@ -1,27 +1,30 @@
-import {Navbar} from "./components/navbar/Navbar";
+import {Topbar} from "./components/topbar/Topbar";
 import {Outlet} from "react-router-dom";
-import {useEffect} from "react";
+import {useDesktop} from "./hooks/useDesktop";
+import {useThemeDetector} from "./hooks/useThemeDetector";
+import React, {useEffect, useState} from "react";
+import {AppStore} from "./AppStore";
+import {themeChanger} from "./utils/themeChanger";
+
+export const AppStoreContext = React.createContext<AppStore>({} as AppStore);
 
 export const App = () => {
+    useDesktop();
+
+    const isDarkTheme = useThemeDetector();
+    const [appStore] = useState(() => new AppStore(isDarkTheme));
+
     useEffect(() => {
-        if (window.location.hostname !== 'tauri.localhost' && window.location.protocol !== 'tauri:') {
-            return
-        }
-
-        function contextMenuListener(e: Event) {
-            e.preventDefault();
-            return false;
-        }
-
-        document.addEventListener('contextmenu', contextMenuListener, {capture: true})
-
-        return () => document.removeEventListener('contextmenu', contextMenuListener);
-    }, []);
+        appStore.useDarkTheme = isDarkTheme;
+        themeChanger(appStore);
+    }, [isDarkTheme]);
 
     return (
         <>
-            <Navbar/>
-            <Outlet/>
+            <AppStoreContext.Provider value={appStore}>
+                <Topbar/>
+                <Outlet/>
+            </AppStoreContext.Provider>
         </>
     )
 }
