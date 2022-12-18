@@ -67,7 +67,7 @@ class WebSecurityConfig {
                 }
 
                 val roles: JSONArray = realmAccess["roles"] as JSONArray
-                val keycloakAuthorities: List<SimpleGrantedAuthority?> = roles.stream()
+                val keycloakAuthorities: List<SimpleGrantedAuthority?> = roles
                     .map { role -> SimpleGrantedAuthority("ROLE_$role") }
                     .toList()
 
