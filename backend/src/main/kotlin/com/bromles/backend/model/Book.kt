@@ -1,30 +1,33 @@
 package com.bromles.backend.model
 
 import com.bromles.backend.dto.BookRequestDto
-import org.springframework.web.multipart.MultipartFile
 import java.time.LocalDate
 import javax.persistence.*
 
 @Table
 @Entity
 class Book(
-    @Lob
-    val file: ByteArray,
     val name: String,
     val author: String,
     val yearOfPublishing: LocalDate,
     @ManyToOne
     @JoinColumn(name = "TAG_ID")
-    var tag: Tag? = null,
+    var tag: Tag,
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
-    var category: Category? = null,
+    var category: Category,
+    @Lob
+    val file: ByteArray,
+    val filename: String?,
 ) : BaseEntity() {
 
-    constructor(bookRequestDto: BookRequestDto) : this(
-        bookRequestDto.file.bytes,
+    constructor(bookRequestDto: BookRequestDto, tag: Tag, category: Category) : this(
         bookRequestDto.name,
         bookRequestDto.author,
-        bookRequestDto.yearOfPublishing
+        bookRequestDto.yearOfPublishing,
+        tag,
+        category,
+        bookRequestDto.file.bytes,
+        bookRequestDto.file.originalFilename,
     )
 }

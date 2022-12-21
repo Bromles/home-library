@@ -9,11 +9,11 @@ import org.springframework.web.multipart.MultipartFile
 import java.time.LocalDate
 
 data class BookRequestDto(
-    val name: String = "123",
-    val author: String  = "123",
+    val name: String,
+    val author: String,
     var file: MultipartFile,
-    val tagName: String  = "123",
-    val category: String = "123",
+    val tagName: String,
+    val category: String,
     @JsonSerialize(using = LocalDateSerializer::class)
     @JsonDeserialize(using = LocalDateDeserializer::class)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

@@ -3,9 +3,10 @@ package com.bromles.backend.controller
 import com.bromles.backend.dto.BookRequestDto
 import com.bromles.backend.dto.BookResponseDto
 import com.bromles.backend.service.BookService
-import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
+import org.springframework.core.io.InputStreamResource
+import org.springframework.http.*
 import org.springframework.web.bind.annotation.*
+
 
 @RestController
 @RequestMapping("/book")
@@ -32,8 +33,16 @@ class BookController(
         bookService.delete(id)
 
     @GetMapping("/{id}/file")
-    fun getBookFile(@PathVariable id: Long): ByteArray =
-        bookService.getBookFile(id)
+    fun getBookFile(@PathVariable id: Long): ResponseEntity<InputStreamResource> {
+        val bookFile = bookService.getBookFile(id)
+        val httpHeaders = HttpHeaders()
+        httpHeaders.contentDisposition =
+            ContentDisposition.builder("attachment")
+                .filename(bookFile.filename).build()
+        return ResponseEntity.status(HttpStatus.OK)
+            .headers(httpHeaders)
+            .body(bookFile.file)
+    }
 
 
 }

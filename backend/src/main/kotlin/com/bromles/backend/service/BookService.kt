@@ -1,5 +1,6 @@
 package com.bromles.backend.service
 
+import com.bromles.backend.dto.BookFileDto
 import com.bromles.backend.dto.BookRequestDto
 import com.bromles.backend.dto.BookResponseDto
 import com.bromles.backend.exception.NotFoundException
@@ -8,7 +9,9 @@ import com.bromles.backend.model.Book
 import com.bromles.backend.model.Category
 import com.bromles.backend.model.Tag
 import com.bromles.backend.repository.BookRepository
+import org.springframework.core.io.InputStreamResource
 import org.springframework.stereotype.Service
+import java.io.ByteArrayInputStream
 
 @Service
 class BookService(
@@ -24,17 +27,17 @@ class BookService(
             .orElseThrow { NotFoundException("Not found book by id = $id") }
         )
 
-    fun getBookFile(id: Long): ByteArray =
-        bookRepository.findById(id)
+    fun getBookFile(id: Long): BookFileDto {
+        val book = bookRepository.findById(id)
             .orElseThrow { NotFoundException("Not found book by id = $id") }
-            .file
+        val resource = InputStreamResource(ByteArrayInputStream(book.file))
+        return BookFileDto(resource, book.filename ?: "${book.name} ${book.author}")
+    }
 
     fun createBook(bookRequestDto: BookRequestDto): BookResponseDto {
         val tag: Tag = tagService.createOrGet(bookRequestDto.tagName)
         val category: Category = categoryService.createOrGet(bookRequestDto.category)
-        val toBook = Book(bookRequestDto)
-        toBook.tag = tag
-        toBook.category = category
+        val toBook = Book(bookRequestDto, tag, category)
         return bookMapper.toBookDto(bookRepository.save(toBook))
     }
 
