@@ -1,9 +1,9 @@
 # build environment
-FROM node:14-alpine as builder
+FROM node:18-alpine as builder
 WORKDIR /app
 COPY package.json .
-COPY yarn.lock .
-RUN yarn
+COPY package-lock.json .
+RUN npm i
 COPY . .
 RUN npm run build
 
