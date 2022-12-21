@@ -28,6 +28,8 @@ class WebSecurityConfig {
             .authorizeRequests { authorizeRequests ->
                 authorizeRequests
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                    .antMatchers("/book", "/book/**").permitAll()
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { resourceServerConfigurer ->
@@ -67,7 +69,7 @@ class WebSecurityConfig {
                 }
 
                 val roles: JSONArray = realmAccess["roles"] as JSONArray
-                val keycloakAuthorities: List<SimpleGrantedAuthority?> = roles.stream()
+                val keycloakAuthorities: List<SimpleGrantedAuthority?> = roles
                     .map { role -> SimpleGrantedAuthority("ROLE_$role") }
                     .toList()
 
