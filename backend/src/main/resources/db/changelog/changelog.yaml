@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
       id: lib.1
-      author: ushakov
+      author: ershov
       changes:
         - createTable:
-            tableName: proxy_setting
+            tableName: category
             columns:
               - column:
                   name: id
@@ -13,10 +13,174 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
+              - column:
+                  name: name
+                  type: text
+              - column:
+                  name: created_date
+                  type: timestamp(6)
+              - column:
+                  name: updated_date
+                  type: timestamp(6)
+              - column:
+                  name: created_user_id
+                  type: bigint
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp(6)
+              - column:
+                  name: updated_date
+                  type: timestamp(6)
+              - column:
+                  name: created_user_id
+                  type: bigint
+        - createTable:
+            tableName: role
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: text
+              - column:
+                  name: created_date
+                  type: timestamp(6)
+              - column:
+                  name: updated_date
+                  type: timestamp(6)
+              - column:
+                  name: created_user_id
+                  type: bigint
+        - createTable:
+            tableName: settings
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp(6)
+              - column:
+                  name: updated_date
+                  type: timestamp(6)
+              - column:
+                  name: created_user_id
+                  type: bigint
+        - createTable:
+            tableName: tag
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: text
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: null
+                    foreignKeyName: FK_TAG__USER
+                    references: user(id)
+              - column:
+                  name: created_date
+                  type: timestamp(6)
+              - column:
+                  name: updated_date
+                  type: timestamp(6)
+              - column:
+                  name: created_user_id
+                  type: bigint
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tag_id
+                  type: bigint
+                  constraints:
+                    nullable: null
+                    foreignKeyName: FK_BOOK__TAG
+                    references: tag(id)
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: null
+                    foreignKeyName: FK_BOOK__CATEGORY
+                    references: category(id)
+              - column:
+                  name: name
+                  type: text
+              - column:
+                  name: file
+                  type: blob
+              - column:
+                  name: author
+                  type: text
+              - column:
+                  name: year_of_publishing
+                  type: timestamp(6)
+              - column:
+                  name: created_date
+                  type: timestamp(6)
+              - column:
+                  name: updated_date
+                  type: timestamp(6)
+              - column:
+                  name: created_user_id
+                  type: bigint
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: null
+                    foreignKeyName: FK_USER_ROLE__USER_ID
+                    references: user(id)
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: null
+                    foreignKeyName: FK_USER_ROLE__ROLE_ID
+                    references: role(id)
 
-  - changeSet:
-      id: lib.2
-      author: ushakov
-      changes:
-        - dropTable:
-            tableName: proxy_setting
