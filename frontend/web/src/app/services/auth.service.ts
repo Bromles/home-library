@@ -18,6 +18,7 @@ export class AuthService {
         scope: 'openid profile email offline_access roles',
         showDebugInformation: false,
         skipSubjectCheck: true,
+        requireHttps: false,
     }
 
     isLoggedIn$: Observable<boolean>
