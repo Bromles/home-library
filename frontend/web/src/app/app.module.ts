@@ -14,13 +14,17 @@ import {ButtonModule} from "primeng/button";
 import {AvatarModule} from "primeng/avatar";
 import {MenuModule} from "primeng/menu";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AuthButtonComponent } from './components/topbar/auth-button/auth-button.component';
+import {AuthService} from "./services/auth.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
         AppComponent,
         TopbarComponent,
         HomeComponent,
-        ThemeToggleComponent
+        ThemeToggleComponent,
+        AuthButtonComponent,
     ],
     imports: [
         BrowserModule,
@@ -29,6 +33,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         ButtonModule,
         AvatarModule,
         MenuModule,
+        HttpClientModule,
         OAuthModule.forRoot({
             resourceServer: {
                 allowedUrls: ['http://localhost:8081/api/v1'],
@@ -39,7 +44,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     providers: [
         ThemeService,
         StyleManagerService,
-        {provide: OAuthStorage, useFactory: oAuthStorageFactory}
+        {provide: OAuthStorage, useFactory: oAuthStorageFactory},
+        AuthService
     ],
     bootstrap: [AppComponent]
 })

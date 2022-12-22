@@ -10,8 +10,10 @@
 
 .appLink {
   color: var(--primary-color-text);
+  text-decoration: none;
 }
 
 .appLogo {
   cursor: pointer;
+  color: var(--primary-color-text);
 }

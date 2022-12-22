@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
 import {environment} from "../../environment/environment";
+import {map, Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +20,15 @@ export class AuthService {
         skipSubjectCheck: true,
     }
 
+    isLoggedIn$: Observable<boolean>
+
     constructor(private oAuthService: OAuthService) {
         this.oAuthService.configure(this.config);
+
+        this.isLoggedIn$ = this.oAuthService.events
+            .pipe(
+                map(e => this.isLoggedIn() || e.type === 'token_received')
+            )
     }
 
     init() {
