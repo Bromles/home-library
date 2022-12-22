@@ -13,7 +13,7 @@ export class ThemeToggleComponent implements OnDestroy {
 
     constructor(private themeService: ThemeService) {
         this.subscription = this.themeService.isDarkTheme$.subscribe(isDarkTheme => {
-            this.iconSuffix = isDarkTheme ? 'moon' : 'sun';
+            this.iconSuffix = isDarkTheme ? 'sun' : 'moon';
         });
     }
 
