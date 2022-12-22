@@ -1,5 +1,5 @@
 .navbar {
-  background-color: var(--surface-overlay);
+  background-color: var(--primary-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,5 +9,5 @@
 }
 
 .appLink {
-  color: var(--primary-color);
+  color: var(--primary-color-text);
 }
