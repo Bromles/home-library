@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
+import {environment} from "../../environment/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     private readonly config: AuthConfig = {
-        issuer: 'http://localhost:8099/auth/realms/master',
+        issuer: environment.authIssuer,
         redirectUri: window.location.origin,
         logoutUrl: window.location.origin,
         clientId: 'frontend',
