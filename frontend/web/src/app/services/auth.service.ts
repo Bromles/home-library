@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
-import {environment} from "../../environment/environment";
+import {environment} from "../../environments/environment";
 import {map, Observable} from "rxjs";
 
 @Injectable({
