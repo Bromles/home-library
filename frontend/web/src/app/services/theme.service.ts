@@ -37,6 +37,6 @@ export class ThemeService {
         this.darkThemeSubject.next(dark);
         localStorage.setItem("isDarkTheme", dark.toString());
 
-        this.styleManager.setStyle("theme", dark ? "assets/dark-theme.css" : "assets/light-theme.css");
+        this.styleManager.setStyle("theme", dark ? "assets/themeDark.css" : "assets/themeLight.css");
     }
 }

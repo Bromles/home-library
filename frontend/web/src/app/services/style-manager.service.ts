@@ -37,6 +37,7 @@ export class StyleManagerService {
         const linkEl = document.createElement("link");
 
         linkEl.setAttribute("rel", "stylesheet");
+        linkEl.setAttribute("type", "text/css");
 
         linkEl
             .classList
