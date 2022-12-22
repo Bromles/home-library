@@ -11,6 +11,9 @@ import {OAuthModule, OAuthStorage} from "angular-oauth2-oidc";
 import {oAuthStorageFactory} from "./utils/oAuthStorageFactory";
 import { ThemeToggleComponent } from './components/topbar/theme-toggle/theme-toggle.component';
 import {ButtonModule} from "primeng/button";
+import {AvatarModule} from "primeng/avatar";
+import {MenuModule} from "primeng/menu";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -22,13 +25,16 @@ import {ButtonModule} from "primeng/button";
     imports: [
         BrowserModule,
         AppRoutingModule,
+        BrowserAnimationsModule,
         OAuthModule.forRoot({
             resourceServer: {
                 allowedUrls: ['http://localhost:8081/api/v1'],
                 sendAccessToken: true
             }
         }),
-        ButtonModule
+        ButtonModule,
+        AvatarModule,
+        MenuModule
     ],
     providers: [
         ThemeService,

@@ -1,5 +1,10 @@
 <nav class="navbar">
-    <a routerLink="/home" class="appLink">Home</a>
-    <a routerLink="/settings" class="appLink">Settings</a>
+    <div routerLink="/home" class="appLogo">
+        <i class="pi pi-book"></i>
+        <span>Library</span>
+    </div>
+    <button pButton type="button" label="Добавить книгу" icon="pi pi-plus" iconPos="left" class="p-button-rounded"></button>
     <app-theme-toggle></app-theme-toggle>
+    <p-menu #menu [popup]="true" [model]="items"></p-menu>
+    <p-avatar icon="pi pi-wrench" shape="circle" (click)="menu.toggle($event)"></p-avatar>
 </nav>
