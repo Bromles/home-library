@@ -1,0 +1,14 @@
+<nav class="navbar">
+    <div routerLink="/home" class="appLogo">
+        <i class="pi pi-book"></i>
+        <span>Library</span>
+    </div>
+    <button pButton *ngIf="isLoggedIn$ | async" type="button" label="Добавить книгу" icon="pi pi-plus" iconPos="left"
+            class="p-button-rounded"></button>
+    <app-theme-toggle></app-theme-toggle>
+    <ng-container *ngIf="isLoggedIn$ | async">
+        <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        <p-avatar icon="pi pi-wrench" shape="circle" (click)="menu.toggle($event)"></p-avatar>
+    </ng-container>
+    <app-auth-button></app-auth-button>
+</nav>

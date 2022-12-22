@@ -1,0 +1,14 @@
+<div class="authButton">
+    <div *ngIf="!(isLoggedIn$ | async); else elseLogoutBlock">
+        <a class="appLink" (click)="login()">
+            Войти
+            |
+            Регистрация
+        </a>
+    </div>
+    <ng-template #elseLogoutBlock>
+        <a class="appLink" (click)="logout()">
+            Выйти
+        </a>
+    </ng-template>
+</div>
