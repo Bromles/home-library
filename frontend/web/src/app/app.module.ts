@@ -19,14 +19,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     declarations: [
         AppComponent,
         TopbarComponent,
-        HomeComponent,
-        AddBookComponent,
-        BookComponent,
-        LoginComponent,
-        MyBooksComponent,
-        ReaderComponent,
-        RegistrationComponent,
-        SettingsComponent
+        HomeComponent
     ],
     imports: [
         BrowserModule,
