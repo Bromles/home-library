@@ -26,15 +26,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        ButtonModule,
+        AvatarModule,
+        MenuModule,
         OAuthModule.forRoot({
             resourceServer: {
                 allowedUrls: ['http://localhost:8081/api/v1'],
                 sendAccessToken: true
             }
         }),
-        ButtonModule,
-        AvatarModule,
-        MenuModule
     ],
     providers: [
         ThemeService,
