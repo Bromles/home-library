@@ -8,3 +8,4 @@ gradlew.bat
 /**/.idea
 /frontend/node_modules
 backend/.env
+logs
