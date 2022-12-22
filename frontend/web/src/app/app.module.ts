@@ -5,15 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ThemeService} from "./services/theme.service";
 import {StyleManagerService} from "./services/style-manager.service";
-import { TopbarComponent } from './components/topbar/topbar.component';
-import { HomeComponent } from './pages/home/home.component';
-import { AddBookComponent } from './pages/add-book/add-book.component';
-import { BookComponent } from './pages/book/book.component';
-import { LoginComponent } from './pages/login/login.component';
-import { MyBooksComponent } from './pages/my-books/my-books.component';
-import { ReaderComponent } from './pages/reader/reader.component';
-import { RegistrationComponent } from './pages/registration/registration.component';
-import { SettingsComponent } from './pages/settings/settings.component';
+import {TopbarComponent} from './components/topbar/topbar.component';
+import {HomeComponent} from './pages/home/home.component';
+import {OAuthModule, OAuthStorage} from "angular-oauth2-oidc";
+import {oAuthStorageFactory} from "./utils/oAuthStorageFactory";
 
 @NgModule({
     declarations: [
@@ -23,9 +18,19 @@ import { SettingsComponent } from './pages/settings/settings.component';
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        OAuthModule.forRoot({
+            resourceServer: {
+                allowedUrls: ['http://localhost:8081/api/v1'],
+                sendAccessToken: true
+            }
+        })
     ],
-    providers: [ThemeService, StyleManagerService],
+    providers: [
+        ThemeService,
+        StyleManagerService,
+        {provide: OAuthStorage, useFactory: oAuthStorageFactory}
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
