@@ -24,12 +24,12 @@ class WebSecurityConfig {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .csrf().disable()
+            .csrf().and().cors().disable()
             .authorizeRequests { authorizeRequests ->
                 authorizeRequests
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                    .antMatchers("/book", "/book/**").permitAll()
+//                    .antMatchers("/book", "/book/**").permitAll()
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { resourceServerConfigurer ->

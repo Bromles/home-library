@@ -17,6 +17,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AuthButtonComponent } from './components/topbar/auth-button/auth-button.component';
 import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
+import {environment} from "../environments/environment";
 
 @NgModule({
     declarations: [
@@ -36,7 +37,7 @@ import {HttpClientModule} from "@angular/common/http";
         HttpClientModule,
         OAuthModule.forRoot({
             resourceServer: {
-                allowedUrls: ['http://localhost:8081/api/v1'],
+                allowedUrls: [environment.backendUrl],
                 sendAccessToken: true
             }
         }),
