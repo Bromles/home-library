@@ -16,6 +16,9 @@ import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.filter.CorsFilter
 
 @Configuration
 @EnableWebSecurity
@@ -24,12 +27,11 @@ class WebSecurityConfig {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .csrf().and().cors().disable()
+            .csrf().disable()
             .authorizeRequests { authorizeRequests ->
                 authorizeRequests
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-//                    .antMatchers("/book", "/book/**").permitAll()
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { resourceServerConfigurer ->
@@ -39,8 +41,22 @@ class WebSecurityConfig {
                             .jwtAuthenticationConverter(jwtAuthenticationConverter())
                     }
             }
+            .cors()
 
         return http.build()
+    }
+
+    @Bean
+    fun disableCorsFilter(): CorsFilter {
+        val source = UrlBasedCorsConfigurationSource()
+        val config = CorsConfiguration()
+
+        config.addAllowedOrigin("*")
+        config.addAllowedHeader("*")
+        config.addAllowedMethod("*")
+        source.registerCorsConfiguration("/**", config)
+
+        return CorsFilter(source)
     }
 
     @Bean
