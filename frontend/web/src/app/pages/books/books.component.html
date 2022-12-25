@@ -1,11 +1,15 @@
-<p-dataView #dv [value]="books" [paginator]="true" [rows]="18" layout="grid">
+<p-dataView #dv [value]="books" [paginator]="true" [rows]="18" layout="grid" filterBy="name">
 
   <ng-template pTemplate="header">
-    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    <div class="flex flex-column md:flex-row md:justify-content-between">
+      <input type="search" pInputText placeholder="Search by brand" (input)="dv.filter($any($event.target).value)">
+      <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    </div>
   </ng-template>
   <ng-template let-book pTemplate="listItem">
     <div class="col-12" routerLink="/books/{{book.id}}">
       <div class="product-list-item">
+        <img src="{{url}}book/{{book.id}}/img" [alt]="book.name"/>
         <div class="product-list-detail">
           <div class="product-name">{{ book.name }}</div>
           <div class="product-description">{{ book.author }}</div>
@@ -25,7 +29,7 @@
           </div>
         </div>
         <div class="product-grid-item-content">
-          <img src="{{url}}book/{{book.id}}/img" [alt]="book.name" />
+          <img src="{{url}}book/{{book.id}}/img" [alt]="book.name"/>
           <div class="product-name">{{ book.name }}</div>
           <div class="product-description">{{ book.author }}</div>
         </div>

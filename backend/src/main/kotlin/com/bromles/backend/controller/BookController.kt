@@ -2,6 +2,7 @@ package com.bromles.backend.controller
 
 import com.bromles.backend.dto.BookRequestDto
 import com.bromles.backend.dto.BookResponseDto
+import com.bromles.backend.dto.UpdateBookRequestDto
 import com.bromles.backend.service.BookService
 import org.springframework.core.io.InputStreamResource
 import org.springframework.http.*
@@ -28,7 +29,12 @@ class BookController(
 
     @GetMapping("/{id}")
     fun getBook(@PathVariable id: Long): BookResponseDto =
-        bookService.getBook(id)
+        bookService.getBookDto(id)
+
+
+    @PutMapping("/{id}")
+    fun updateBook(@PathVariable id: Long, @RequestBody bookDto: UpdateBookRequestDto): BookResponseDto =
+        bookService.updateBook(id, bookDto)
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

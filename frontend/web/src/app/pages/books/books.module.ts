@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {BooksComponent} from "./books.component";
 import {DataViewModule} from "primeng/dataview";
 import {BooksRoutingModule} from "./books-routing.module";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import {BooksRoutingModule} from "./books-routing.module";
   imports: [
     CommonModule,
     DataViewModule,
-    BooksRoutingModule
+    BooksRoutingModule,
+    InputTextModule
   ]
 })
 export class BooksModule { }

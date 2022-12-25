@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BookService} from "../../services/book/book.service";
 import {BookDto} from "../../services/book/dto/book-dto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-book',
@@ -15,6 +16,8 @@ export class BookComponent {
 
   book?: BookDto
   bookUpdateForm: FormGroup
+
+  url: string = environment.backendUrl
 
   constructor(
     private bookService: BookService,
@@ -34,6 +37,14 @@ export class BookComponent {
 
   updateBook() {
     this.bookService.updateBook(this.bookId, new BookDto(this.bookUpdateForm.value))
+      .subscribe({
+        next: body => {
+          console.log(body);
+        },
+        error: error => {
+          console.log(error);
+        }
+      })
   }
 
   private loadBook() {

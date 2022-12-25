@@ -6,19 +6,21 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {FileUploadModule} from "primeng/fileupload";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
     declarations: [
         AddBookComponent,
     ],
-    imports: [
-        CommonModule,
-        AddBookRoutingModule,
-        ReactiveFormsModule,
-        InputTextModule,
-        ButtonModule,
-        FileUploadModule,
-    ],
+  imports: [
+    CommonModule,
+    AddBookRoutingModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    ButtonModule,
+    FileUploadModule,
+    DropdownModule,
+  ],
     providers: [],
 })export class AddBookModule {
 }

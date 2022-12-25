@@ -30,7 +30,7 @@ export class BookService {
     return this.httpClient.get<BookDto>(environment.backendUrl + `book/${bookId}`)
   }
 
-  updateBook(bookId: Number, formData: BookDto) {
-    return this.httpClient.put<BookDto>(environment.backendUrl + `book/${bookId}`, formData)
+  updateBook(bookId: Number, bookDto: BookDto) {
+    return this.httpClient.put<BookDto>(environment.backendUrl + `book/${bookId}`, bookDto)
   }
 }

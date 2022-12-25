@@ -1,15 +1,16 @@
 package com.bromles.backend.model
 
 import com.bromles.backend.dto.BookRequestDto
+import com.bromles.backend.dto.UpdateBookRequestDto
 import java.time.LocalDate
 import javax.persistence.*
 
 @Table
 @Entity
 class Book(
-    val name: String,
-    val author: String,
-    val yearOfPublishing: LocalDate,
+    var name: String,
+    var author: String,
+    var yearOfPublishing: LocalDate,
     @ManyToOne
     @JoinColumn(name = "TAG_ID")
     var tag: Tag,
@@ -17,10 +18,10 @@ class Book(
     @JoinColumn(name = "CATEGORY_ID")
     var category: Category,
     @Lob
-    val img: ByteArray,
+    var img: ByteArray,
     @Lob
-    val file: ByteArray,
-    val filename: String?,
+    var file: ByteArray,
+    var filename: String?,
 ) : BaseEntity() {
 
     constructor(bookRequestDto: BookRequestDto, tag: Tag, category: Category) : this(
@@ -33,4 +34,10 @@ class Book(
         bookRequestDto.file.bytes,
         bookRequestDto.file.originalFilename,
     )
+
+    fun update(bookDto: UpdateBookRequestDto) {
+        this.name = bookDto.name
+        this.author = bookDto.author
+        this.yearOfPublishing = bookDto.yearOfPublishing
+    }
 }

@@ -32,11 +32,17 @@
     ></p-fileUpload>
   </div>
 
-
-  <span class="p-float-label mt-4">
-    <input id="tagName" type="text" pInputText formControlName="tagName">
-    <label for="tagName">Tag</label>
-  </span>
+  <div class="mt-4">
+    <p-dropdown
+            [options]="tags"
+            [editable]="true"
+            [showClear]="true"
+            placeholder="Select a TAG"
+            optionLabel="name"
+            optionValue="name"
+            formControlName="tagName"
+    ></p-dropdown>
+  </div>
 
   <span class="p-float-label mt-4">
     <input id="category" type="text" pInputText formControlName="category">

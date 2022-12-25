@@ -1,9 +1,11 @@
 package com.bromles.backend.mapper
 
 import com.bromles.backend.dto.BookResponseDto
+import com.bromles.backend.dto.UpdateBookRequestDto
 import com.bromles.backend.model.Book
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
+import org.mapstruct.MappingTarget
 import org.mapstruct.ReportingPolicy
 
 @Mapper(
@@ -17,5 +19,6 @@ interface BookMapper {
     fun toBookDto(book: Book): BookResponseDto
 
     fun toBookDto(book: List<Book>): List<BookResponseDto>
+
 
 }
