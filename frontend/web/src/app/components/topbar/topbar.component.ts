@@ -36,8 +36,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.items = [
-            {label: 'Мои книги', routerLink: ['/my-books']},
-            {label: 'Настройки', routerLink: ['/settings']},
+            {label: 'Мои книги', routerLink: ['/my-books']}
         ];
     }
 }

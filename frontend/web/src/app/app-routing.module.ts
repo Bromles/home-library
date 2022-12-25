@@ -10,27 +10,31 @@ const routes: Routes = [
     },
     {
         path: 'add-book',
-        loadChildren: () => import('./pages/add-book/add-book.module').then(m => m.AddBookModule)
+        loadChildren: () => import('./pages/add-book/add-book.module').then(m => m.AddBookModule),
+        canActivate: [AuthGuard],
+        data: {
+            roles: ['user']
+        }
     },
     {
         path: 'books/:id',
-        loadChildren: () => import('./pages/book/book.module').then(m => m.BookModule)
+        loadChildren: () => import('./pages/book/book.module').then(m => m.BookModule),
+        canActivate: [AuthGuard],
+        data: {
+            roles: ['user']
+        }
     },
     {
         path: 'books',
-        loadChildren: () => import('./pages/books/books.module').then(m => m.BooksModule)
+        loadChildren: () => import('./pages/books/books.module').then(m => m.BooksModule),
+        canActivate: [AuthGuard],
+        data: {
+            roles: ['user']
+        }
     },
     {
         path: 'my-books',
-        loadChildren: () => import('./pages/my-books/my-books.module').then(m => m.MyBooksModule)
-    },
-    {
-        path: 'reader',
-        loadChildren: () => import('./pages/reader/reader.module').then(m => m.ReaderModule)
-    },
-    {
-        path: 'settings',
-        loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsModule),
+        loadChildren: () => import('./pages/my-books/my-books.module').then(m => m.MyBooksModule),
         canActivate: [AuthGuard],
         data: {
             roles: ['user']
