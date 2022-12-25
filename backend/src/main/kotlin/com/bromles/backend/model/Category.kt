@@ -7,7 +7,7 @@ import javax.persistence.Table
 @Table
 @Entity
 class Category(
-    val name: String,
+    var name: String,
     @OneToMany
     val books: List<Book> = listOf(),
 ) : BaseEntity()
