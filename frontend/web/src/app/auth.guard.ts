@@ -33,6 +33,7 @@ export class AuthGuard implements CanActivate {
             }
 
             if (!hasRole) {
+                console.error("User does not have required role");
                 this.router.navigate(['/']);
             }
 
@@ -40,6 +41,7 @@ export class AuthGuard implements CanActivate {
         }
 
         if (!(hasIdToken && hasAccessToken)) {
+            console.error("User is not logged in");
             this.router.navigate(['/']);
         }
 

@@ -56,7 +56,7 @@ export class AuthService {
             return [];
         }
 
-        const roles: string[] = claims['roles'];
+        const roles: string[] = claims['realm_access']['roles'];
 
         if (!roles) {
             throw Error('Roles not present');
