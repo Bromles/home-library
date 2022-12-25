@@ -3,7 +3,7 @@ version: '3.7'
 services:
   database:
     container_name: database
-    image: postgres:14.4
+    image: postgres:13.9
     volumes:
       - db-data:/var/lib/postgresql/data
       - ./docker_multiple_databases:/docker-entrypoint-initdb.d
@@ -70,11 +70,13 @@ services:
       DB_PASSWORD: "password"
       SEARCH_ENGINE_URL: "http://search_engine:7070"
       SEARCH_ENGINE_KEY: "masterKey"
-      AUTH_SERVER_JWKS_URL: "http://auth_server:8080/auth/realms/master/protocol/openid-connect/certs"
+      AUTH_SERVER_JWKS_URL: "http://auth_server:8080/realms/home_library/protocol/openid-connect/certs"
       AUTH_SERVER_URL: "http://auth_server:8080"
       AUTH_SERVER_GRANT_TYPE: "client_credentials"
-      AUTH_SERVER_REALM: "master"
+      AUTH_SERVER_REALM: "home_library"
       AUTH_SERVER_CLIENT_ID: "backend"
+    ports:
+      - '8082:8445'
     env_file:
       - backend/.env
     depends_on:

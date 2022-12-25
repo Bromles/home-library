@@ -1,0 +1,67 @@
+<div class="card">
+  <p-dataView #dv [value]="books" [paginator]="true" [rows]="18" layout="grid">
+
+    <ng-template pTemplate="header">
+      <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    </ng-template>
+    <ng-template let-book pTemplate="listItem">
+      <div class="col-12">
+        <div class="product-list-item">
+          <div class="product-list-detail">
+            <div class="product-name">{{ book.name }}</div>
+            <div class="product-description">{{ book.author }}</div>
+            <i class="pi pi-tag product-category-icon"></i>
+            <span class="product-category">{{ book.category }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template let-book pTemplate="gridItem">
+      <div class="col-12 md:col-4">
+        <div class="product-grid-item card ">
+          <div class="product-grid-item-top">
+            <div>
+              <i class="pi pi-tag product-category-icon"></i>
+              <span class="product-category">{{ book.category }}</span>
+            </div>
+          </div>
+          <div class="product-grid-item-content">
+            <div class="product-name">{{ book.name }}</div>
+            <div class="product-description">{{ book.author }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+
+<!--    <ng-template let-book pTemplate="listItem">-->
+<!--      <div class="col-12">-->
+<!--        <div class="product-list-item">-->
+<!--          <div class="product-list-detail">-->
+<!--            <div class="product-name">{{book.name}}</div>-->
+<!--            <div class="product-description">{{book.author}}</div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </ng-template>-->
+<!--    <ng-template let-book pTemplate="gridItem">-->
+<!--      <div class="col-12 md:col-4">-->
+<!--        <div class="product-grid-item card">-->
+<!--          <div class="product-grid-item-top">-->
+<!--            <div>-->
+<!--              <i class="pi pi-tag product-category-icon"></i>-->
+<!--              <span class="product-category">{{book.category}}</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="product-grid-item-content">-->
+<!--            <div class="product-name">{{book.name}}</div>-->
+<!--            <div class="product-description">{{book.author}}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </ng-template>-->
+  </p-dataView>
+</div>
+
+
