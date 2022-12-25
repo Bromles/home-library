@@ -1,1 +1,53 @@
-<p>add-book works!</p>
+<form [formGroup]="bookForm" (ngSubmit)="createBook()" class="p-fluid">
+  <h3>Create Book</h3>
+  <span class="p-float-label mt-4">
+    <input id="float-input" type="text" pInputText formControlName="name">
+    <label for="float-input">Name</label>
+  </span>
+
+  <span class="p-float-label mt-4">
+    <input id="author" type="text" pInputText formControlName="author">
+    <label for="author">Author</label>
+  </span>
+
+  <div class="mt-4">
+    <p-fileUpload
+        #fileUpload
+        [customUpload]="true"
+        [showUploadButton]="false"
+        [multiple]="false"
+        chooseLabel="Choose file"
+        (uploadHandler)="onSelect($event)"
+    ></p-fileUpload>
+  </div>
+
+  <div class="mt-4">
+    <p-fileUpload
+        #imgUpload
+        [customUpload]="true"
+        [showUploadButton]="false"
+        [multiple]="false"
+        chooseLabel="Choose img"
+        (uploadHandler)="onSelectImg($event)"
+    ></p-fileUpload>
+  </div>
+
+
+  <span class="p-float-label mt-4">
+    <input id="tagName" type="text" pInputText formControlName="tagName">
+    <label for="tagName">Tag</label>
+  </span>
+
+  <span class="p-float-label mt-4">
+    <input id="category" type="text" pInputText formControlName="category">
+    <label for="category">Category</label>
+  </span>
+
+  <span class="p-float-label mt-4 mb-4">
+    <input id="yearOfPublishing" type="text" pInputText formControlName="yearOfPublishing">
+    <label for="yearOfPublishing">Year of publishing</label>
+  </span>
+
+  <p-button label="Create" type="submit" class="mt-4"></p-button>
+</form>
+

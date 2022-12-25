@@ -12,10 +12,17 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm
 import org.springframework.security.oauth2.jwt.Jwt
+import org.springframework.security.oauth2.jwt.JwtDecoder
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.filter.CorsFilter
+
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +36,7 @@ class WebSecurityConfig {
                 authorizeRequests
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                    .antMatchers("/book", "/book/**").permitAll()
+                    .antMatchers("/book/*/img").permitAll()
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { resourceServerConfigurer ->
@@ -39,8 +46,23 @@ class WebSecurityConfig {
                             .jwtAuthenticationConverter(jwtAuthenticationConverter())
                     }
             }
+            .cors()
 
         return http.build()
+    }
+
+    @Bean
+    fun disableCorsFilter(): CorsFilter {
+        val source = UrlBasedCorsConfigurationSource()
+        val config = CorsConfiguration()
+
+        config.addAllowedOrigin("*")
+        config.addAllowedHeader("*")
+        config.addAllowedMethod("*")
+
+        source.registerCorsConfiguration("/**", config)
+
+        return CorsFilter(source)
     }
 
     @Bean
@@ -70,7 +92,7 @@ class WebSecurityConfig {
 
                 val roles: JSONArray = realmAccess["roles"] as JSONArray
                 val keycloakAuthorities: List<SimpleGrantedAuthority?> = roles
-                    .map { role -> SimpleGrantedAuthority("ROLE_$role") }
+                    .map { role -> SimpleGrantedAuthority("ROLE_${(role as String).uppercase()}") }
                     .toList()
 
                 grantedAuthorities!!.addAll(keycloakAuthorities)

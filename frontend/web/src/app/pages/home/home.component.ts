@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {BookService} from "../../services/book/book.service";
+import {BookDto} from "../../services/book/dto/book-dto";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-home',
@@ -6,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
 
 }

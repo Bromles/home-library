@@ -17,6 +17,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AuthButtonComponent } from './components/topbar/auth-button/auth-button.component';
 import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
+import {environment} from "../environments/environment";
+import {CardModule} from "primeng/card";
+import {DataViewModule} from "primeng/dataview";
+import { BooksComponent } from './pages/books/books.component';
 
 @NgModule({
     declarations: [
@@ -26,21 +30,23 @@ import {HttpClientModule} from "@angular/common/http";
         ThemeToggleComponent,
         AuthButtonComponent,
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        ButtonModule,
-        AvatarModule,
-        MenuModule,
-        HttpClientModule,
-        OAuthModule.forRoot({
-            resourceServer: {
-                allowedUrls: ['http://localhost:8081/api/v1'],
-                sendAccessToken: true
-            }
-        }),
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    AvatarModule,
+    MenuModule,
+    HttpClientModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: [environment.backendUrl],
+        sendAccessToken: true
+      }
+    }),
+    CardModule,
+    DataViewModule,
+  ],
     providers: [
         ThemeService,
         StyleManagerService,
