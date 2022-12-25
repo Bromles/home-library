@@ -3,7 +3,7 @@
         <i class="pi pi-book"></i>
         <span>Library</span>
     </div>
-    <button pButton *ngIf="isLoggedIn$ | async" (click)="addBook()" type="button" label="Добавить книгу" icon="pi pi-plus" iconPos="left"
+    <button routerLink="/add-book" pButton *ngIf="isLoggedIn$ | async" type="button" label="Добавить книгу" icon="pi pi-plus" iconPos="left"
             class="p-button-rounded"></button>
     <app-theme-toggle></app-theme-toggle>
     <ng-container *ngIf="isLoggedIn$ | async">

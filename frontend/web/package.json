@@ -22,6 +22,7 @@
     "angular-instantsearch": "^4.4.0",
     "angular-oauth2-oidc": "^15.0.1",
     "instantsearch.js": "^4.49.2",
+    "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primeng": "^15.0.0",
     "rxjs": "~7.5.0",
