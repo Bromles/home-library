@@ -11,6 +11,7 @@ import java.time.LocalDate
 data class BookRequestDto(
     val name: String,
     val author: String,
+    var img: MultipartFile,
     var file: MultipartFile,
     val tagName: String,
     val category: String,

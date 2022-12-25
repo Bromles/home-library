@@ -1,4 +1,4 @@
-<form [formGroup]="createBook" (ngSubmit)="createCompany()" class="p-fluid">
+<form [formGroup]="bookForm" (ngSubmit)="createBook()" class="p-fluid">
   <h3>Create Book</h3>
   <span class="p-float-label mt-4">
     <input id="float-input" type="text" pInputText formControlName="name">
@@ -18,6 +18,17 @@
         [multiple]="false"
         chooseLabel="Choose file"
         (uploadHandler)="onSelect($event)"
+    ></p-fileUpload>
+  </div>
+
+  <div class="mt-4">
+    <p-fileUpload
+        #imgUpload
+        [customUpload]="true"
+        [showUploadButton]="false"
+        [multiple]="false"
+        chooseLabel="Choose img"
+        (uploadHandler)="onSelectImg($event)"
     ></p-fileUpload>
   </div>
 

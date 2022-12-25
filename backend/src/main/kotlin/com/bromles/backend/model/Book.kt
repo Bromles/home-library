@@ -17,6 +17,8 @@ class Book(
     @JoinColumn(name = "CATEGORY_ID")
     var category: Category,
     @Lob
+    val img: ByteArray,
+    @Lob
     val file: ByteArray,
     val filename: String?,
 ) : BaseEntity() {
@@ -27,6 +29,7 @@ class Book(
         bookRequestDto.yearOfPublishing,
         tag,
         category,
+        bookRequestDto.img.bytes,
         bookRequestDto.file.bytes,
         bookRequestDto.file.originalFilename,
     )

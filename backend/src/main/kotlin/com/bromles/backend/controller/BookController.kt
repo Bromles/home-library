@@ -5,6 +5,10 @@ import com.bromles.backend.dto.BookResponseDto
 import com.bromles.backend.service.BookService
 import org.springframework.core.io.InputStreamResource
 import org.springframework.http.*
+import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.web.bind.annotation.*
 
 
@@ -15,6 +19,7 @@ class BookController(
     private val bookService: BookService,
 ) {
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping
     fun getAllBook(): List<BookResponseDto> =
         bookService.getAllBook()
@@ -36,6 +41,18 @@ class BookController(
     @GetMapping("/{id}/file")
     fun getBookFile(@PathVariable id: Long): ResponseEntity<InputStreamResource> {
         val bookFile = bookService.getBookFile(id)
+        val httpHeaders = HttpHeaders()
+        httpHeaders.contentDisposition =
+            ContentDisposition.builder("attachment")
+                .filename(bookFile.filename).build()
+        return ResponseEntity.status(HttpStatus.OK)
+            .headers(httpHeaders)
+            .body(bookFile.file)
+    }
+
+    @GetMapping("/{id}/img")
+    fun getBookImg(@PathVariable id: Long): ResponseEntity<InputStreamResource> {
+        val bookFile = bookService.getBookImg(id)
         val httpHeaders = HttpHeaders()
         httpHeaders.contentDisposition =
             ContentDisposition.builder("attachment")

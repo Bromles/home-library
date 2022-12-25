@@ -194,3 +194,20 @@ databaseChangeLog:
               - column:
                   name: filename
                   type: text
+  - changeSet:
+      id: add img
+      author: ershov
+      changes:
+        - addColumn:
+            tableName: book
+            columns:
+              - column:
+                  name: img
+                  type: blob
+        - addColumn:
+            tableName: user
+            columns:
+              - column:
+                  name: keycloak_id
+                  type: uuid
+

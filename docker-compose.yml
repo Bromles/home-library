@@ -42,15 +42,17 @@ services:
     container_name: auth_server
     image: quay.io/keycloak/keycloak:20.0.1
     environment:
-      DB_VENDOR: POSTGRES
-      DB_ADDR: postgres
-      DB_DATABASE: keycloak_db
-      DB_USER: library
-      DB_PASSWORD: password
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://database:5432/keycloak_db
+      KC_DB_USERNAME: library
+      KC_DB_PASSWORD: password
       KEYCLOAK_ADMIN: library
+      KC_HTTP_ENABLED: 'true'
+      KC_HTTP_PORT: 8099
+      KC_HOSTNAME_STRICT: 'false'
       KEYCLOAK_ADMIN_PASSWORD: password
     ports:
-      - '8099:8080'
+      - '8099:8099'
     command:
       - start-dev
     restart: unless-stopped

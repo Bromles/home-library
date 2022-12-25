@@ -20,6 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {CardModule} from "primeng/card";
 import {DataViewModule} from "primeng/dataview";
+import { BooksComponent } from './pages/books/books.component';
 
 @NgModule({
     declarations: [

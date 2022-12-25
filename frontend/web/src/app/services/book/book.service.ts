@@ -25,4 +25,12 @@ export class BookService {
         console.log(value)
       })
   }
+
+  getBook(bookId: Number): Observable<BookDto> {
+    return this.httpClient.get<BookDto>(environment.backendUrl + `book/${bookId}`)
+  }
+
+  updateBook(bookId: Number, formData: BookDto) {
+    return this.httpClient.put<BookDto>(environment.backendUrl + `book/${bookId}`, formData)
+  }
 }

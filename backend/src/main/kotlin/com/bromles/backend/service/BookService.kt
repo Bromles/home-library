@@ -8,6 +8,7 @@ import com.bromles.backend.mapper.BookMapper
 import com.bromles.backend.model.Book
 import com.bromles.backend.model.Category
 import com.bromles.backend.model.Tag
+import com.bromles.backend.model.User
 import com.bromles.backend.repository.BookRepository
 import org.springframework.core.io.InputStreamResource
 import org.springframework.stereotype.Service
@@ -19,6 +20,7 @@ class BookService(
     private val tagService: TagService,
     private val categoryService: CategoryService,
     private val bookMapper: BookMapper,
+    private val userService: UserService,
 ) {
     fun getAllBook(): List<BookResponseDto> = bookMapper.toBookDto(bookRepository.findAll())
 
@@ -31,6 +33,13 @@ class BookService(
         val book = bookRepository.findById(id)
             .orElseThrow { NotFoundException("Not found book by id = $id") }
         val resource = InputStreamResource(ByteArrayInputStream(book.file))
+        return BookFileDto(resource, book.filename ?: "${book.name} ${book.author}")
+    }
+
+    fun getBookImg(id: Long): BookFileDto {
+        val book = bookRepository.findById(id)
+            .orElseThrow { NotFoundException("Not found book by id = $id") }
+        val resource = InputStreamResource(ByteArrayInputStream(book.img))
         return BookFileDto(resource, book.filename ?: "${book.name} ${book.author}")
     }
 

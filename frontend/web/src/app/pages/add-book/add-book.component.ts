@@ -12,18 +12,20 @@ import {BookService} from "../../services/book/book.service";
 })
 export class AddBookComponent implements OnInit, OnDestroy {
   @ViewChild('fileUpload') fileUpload: FileUpload | undefined;
-  createBook: FormGroup;
+  @ViewChild('imgUpload') imgUpload: FileUpload | undefined;
+  bookForm: FormGroup;
   imagePreview: string | undefined;
   private subscription: Subscription | undefined;
 
   constructor(
-      private httpClient: HttpClient,
-      private bookService: BookService,
+    private httpClient: HttpClient,
+    private bookService: BookService,
   ) {
-    this.createBook = new FormGroup({
+    this.bookForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       author: new FormControl(null, Validators.required),
       file: new FormControl(null, Validators.required),
+      img: new FormControl(null, Validators.required),
       tagName: new FormControl(null, Validators.required),
       category: new FormControl(null, Validators.required),
       yearOfPublishing: new FormControl(null, Validators.required),
@@ -31,30 +33,39 @@ export class AddBookComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
-    }
+  }
 
   ngOnInit(): void {
     this.subscription?.unsubscribe()
   }
 
-  createCompany(): void {
+  createBook(): void {
     this.fileUpload!.upload();
+    this.imgUpload!.upload();
     const formData: FormData = new FormData();
-    formData.append('name', this.createBook.value.name);
-    formData.append('author', this.createBook.value.author);
-    formData.append('file', this.createBook.value.file);
-    formData.append('tagName', this.createBook.value.tagName);
-    formData.append('category', this.createBook.value.category);
-    formData.append('yearOfPublishing', this.createBook.value.yearOfPublishing);
+    formData.append('name', this.bookForm.value.name);
+    formData.append('author', this.bookForm.value.author);
+    formData.append('file', this.bookForm.value.file);
+    formData.append('img', this.bookForm.value.img);
+    formData.append('tagName', this.bookForm.value.tagName);
+    formData.append('category', this.bookForm.value.category);
+    formData.append('yearOfPublishing', this.bookForm.value.yearOfPublishing);
     this.subscription = this.bookService.createBook(formData)
   }
 
   onSelect(event: { files: any[]; }) {
     for (let file of event.files) {
       console.log(file)
-      this.createBook.patchValue({ file: file });
-      this.createBook.get('file')!.updateValueAndValidity();
+      this.bookForm.patchValue({file: file});
+      this.bookForm.get('file')!.updateValueAndValidity();
+    }
+  }
+
+  onSelectImg(event: { files: any[]; }) {
+    for (let file of event.files) {
+      console.log(file)
+      this.bookForm.patchValue({img: file});
+      this.bookForm.get('img')!.updateValueAndValidity();
     }
   }
 }

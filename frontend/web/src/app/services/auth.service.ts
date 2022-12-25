@@ -9,7 +9,7 @@ import {map, Observable} from "rxjs";
 export class AuthService {
     private readonly config: AuthConfig = {
         issuer: environment.authIssuer,
-        redirectUri: window.location.origin,
+        redirectUri: window.location.origin + "/books",
         logoutUrl: window.location.origin,
         clientId: 'frontend',
         requestAccessToken: true,

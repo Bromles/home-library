@@ -13,8 +13,12 @@ const routes: Routes = [
         loadChildren: () => import('./pages/add-book/add-book.module').then(m => m.AddBookModule)
     },
     {
-        path: 'book',
+        path: 'books/:id',
         loadChildren: () => import('./pages/book/book.module').then(m => m.BookModule)
+    },
+    {
+        path: 'books',
+        loadChildren: () => import('./pages/books/books.module').then(m => m.BooksModule)
     },
     {
         path: 'my-books',
