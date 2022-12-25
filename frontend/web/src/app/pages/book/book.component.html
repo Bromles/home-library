@@ -1,5 +1,10 @@
 <form [formGroup]="bookUpdateForm" (ngSubmit)="updateBook()" class="p-fluid">
   <h3>Book</h3>
+
+  <div class="col-6 col-offset-3 justify-content-center flex">
+    <img src="{{url}}book/{{book?.id}}/img" [alt]="book?.name">
+  </div>
+
   <span class="p-float-label mt-4">
     <input id="float-input" type="text" pInputText formControlName="name">
     <label for="float-input">Name</label>

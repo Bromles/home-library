@@ -4,6 +4,8 @@ import {Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {FileUpload} from "primeng/fileupload";
 import {BookService} from "../../services/book/book.service";
+import {TagService} from "../../services/tag/tag.service";
+import {TagDto} from "../../services/tag/dto/tag-dto";
 
 @Component({
   selector: 'app-add-book',
@@ -17,9 +19,12 @@ export class AddBookComponent implements OnInit, OnDestroy {
   imagePreview: string | undefined;
   private subscription: Subscription | undefined;
 
+  tags: TagDto[] = []
+
   constructor(
     private httpClient: HttpClient,
     private bookService: BookService,
+    private tagService: TagService,
   ) {
     this.bookForm = new FormGroup({
       name: new FormControl(null, Validators.required),
@@ -30,6 +35,12 @@ export class AddBookComponent implements OnInit, OnDestroy {
       category: new FormControl(null, Validators.required),
       yearOfPublishing: new FormControl(null, Validators.required),
     });
+    tagService.getAllTag().subscribe({
+      next: tags => {
+        console.log(tags)
+        this.tags = tags
+      }
+    })
   }
 
   ngOnDestroy(): void {
