@@ -3,7 +3,7 @@ package com.bromles.backend.controller
 import com.bromles.backend.dto.CategoryDto
 import com.bromles.backend.service.CategoryService
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -16,9 +16,10 @@ class CategoryController(
     fun getAllCategories(): List<CategoryDto> =
         categoryService.getAllCategories()
 
-    @PostMapping(consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun addCategory(@ModelAttribute categoryDto: CategoryDto) =
+    fun addCategory(@RequestBody categoryDto: CategoryDto) =
         categoryService.createCategory(categoryDto)
 
     @GetMapping("/{id}")
@@ -26,8 +27,9 @@ class CategoryController(
         categoryService.getCategory(id)
 
 
-    @PutMapping( path = ["/{id}"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
-    fun modifyCategoryName(@PathVariable id: Long, @ModelAttribute modifiedCategory: CategoryDto): CategoryDto =
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}")
+    fun modifyCategoryName(@PathVariable id: Long, @RequestBody modifiedCategory: CategoryDto): CategoryDto =
         categoryService.modifyCategory(id, modifiedCategory)
 }
 

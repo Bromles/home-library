@@ -6,9 +6,6 @@ import com.bromles.backend.service.BookService
 import org.springframework.core.io.InputStreamResource
 import org.springframework.http.*
 import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.security.core.Authentication
-import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.web.bind.annotation.*
 
 
@@ -35,7 +32,7 @@ class BookController(
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun addBook(@PathVariable id: Long) =
+    fun deleteBook(@PathVariable id: Long) =
         bookService.delete(id)
 
     @GetMapping("/{id}/file")
