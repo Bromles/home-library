@@ -41,10 +41,11 @@ export class AuthGuard implements CanActivate {
         }
 
         if (!(hasIdToken && hasAccessToken)) {
-            console.error("User is not logged in");
+            //console.error("User is not logged in");
             this.router.navigate(['/']);
         }
 
+        //console.warn(`hasIdToken: ${hasIdToken}, hasAccessToken: ${hasAccessToken}`);
         return (hasIdToken && hasAccessToken);
     }
 
