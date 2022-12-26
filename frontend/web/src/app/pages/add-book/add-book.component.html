@@ -44,10 +44,21 @@
     ></p-dropdown>
   </div>
 
-  <span class="p-float-label mt-4">
-    <input id="category" type="text" pInputText formControlName="category">
-    <label for="category">Category</label>
-  </span>
+  <div class="mt-4">
+    <p-dropdown
+      [options]="categories"
+      [showClear]="true"
+      placeholder="Select a category"
+      optionLabel="name"
+      optionValue="name"
+      formControlName="categoryName"
+    ></p-dropdown>
+  </div>
+
+<!--  <span class="p-float-label mt-4">-->
+<!--    <input id="category" type="text" pInputText formControlName="category">-->
+<!--    <label for="category">Category</label>-->
+<!--  </span>-->
 
   <span class="p-float-label mt-4 mb-4">
     <input id="yearOfPublishing" type="text" pInputText formControlName="yearOfPublishing">
