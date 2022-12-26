@@ -6,6 +6,8 @@ import {FileUpload} from "primeng/fileupload";
 import {BookService} from "../../services/book/book.service";
 import {TagService} from "../../services/tag/tag.service";
 import {TagDto} from "../../services/tag/dto/tag-dto";
+import {CategoryDto} from "../../services/category/dto/category-dto";
+import {CategoryService} from "../../services/category/category.service";
 
 @Component({
   selector: 'app-add-book',
@@ -20,11 +22,13 @@ export class AddBookComponent implements OnInit, OnDestroy {
   private subscription: Subscription | undefined;
 
   tags: TagDto[] = []
+  categories: CategoryDto[] = []
 
   constructor(
     private httpClient: HttpClient,
     private bookService: BookService,
     private tagService: TagService,
+    private categoryService: CategoryService
   ) {
     this.bookForm = new FormGroup({
       name: new FormControl(null, Validators.required),
@@ -39,6 +43,12 @@ export class AddBookComponent implements OnInit, OnDestroy {
       next: tags => {
         console.log(tags)
         this.tags = tags
+      }
+    });
+    categoryService.getAllCategories().subscribe({
+      next: categories => {
+        console.log(categories)
+        this.categories = categories
       }
     })
   }

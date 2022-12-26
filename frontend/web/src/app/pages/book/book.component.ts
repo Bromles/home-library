@@ -4,6 +4,10 @@ import {BookService} from "../../services/book/book.service";
 import {BookDto} from "../../services/book/dto/book-dto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../environments/environment";
+import {TagService} from "../../services/tag/tag.service";
+import {CategoryService} from "../../services/category/category.service";
+import {TagDto} from "../../services/tag/dto/tag-dto";
+import {CategoryDto} from "../../services/category/dto/category-dto";
 
 @Component({
   selector: 'app-book',
@@ -16,13 +20,17 @@ export class BookComponent {
 
   book?: BookDto
   bookUpdateForm: FormGroup
+  tags: TagDto[] = []
+  categories: CategoryDto[] = []
 
   url: string = environment.backendUrl
 
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tagService: TagService,
+    private categoryService: CategoryService
   ) {
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
     this.loadBook()
@@ -33,6 +41,18 @@ export class BookComponent {
       category: new FormControl(this.book?.category, Validators.required),
       yearOfPublishing: new FormControl(this.book?.yearOfPublishing, Validators.required),
     });
+    tagService.getAllTag().subscribe({
+      next: tags => {
+        console.log(tags)
+        this.tags = tags
+      }
+    });
+    categoryService.getAllCategories().subscribe({
+      next: categories => {
+        console.log(categories)
+        this.categories = categories
+      }
+    })
   }
 
   updateBook() {
