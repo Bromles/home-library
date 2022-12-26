@@ -1,6 +1,6 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-auth-button',
@@ -9,7 +9,6 @@ import {Observable, Subscription} from "rxjs";
 })
 export class AuthButtonComponent {
     isLoggedIn$: Observable<boolean>;
-
 
     constructor(private authService: AuthService) {
         this.isLoggedIn$ = this.authService.isLoggedIn$;

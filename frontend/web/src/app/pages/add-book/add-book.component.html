@@ -1,14 +1,14 @@
 <form [formGroup]="bookForm" (ngSubmit)="createBook()" class="p-fluid">
-  <h3>Create Book</h3>
+  <h3>Добавить книгу</h3>
   <span class="p-float-label mt-4">
     <input id="float-input" type="text" pInputText formControlName="name" >
-    <label for="float-input">Name</label>
+    <label for="float-input">Название</label>
   </span>
 
 
   <span class="p-float-label mt-4">
     <input id="author" type="text" pInputText formControlName="author">
-    <label for="author">Author</label>
+    <label for="author">Автор</label>
   </span>
 
   <div class="mt-4">
@@ -17,7 +17,9 @@
         [customUpload]="true"
         [showUploadButton]="false"
         [multiple]="false"
-        chooseLabel="Choose file"
+        chooseLabel="Выберите файл"
+        cancelLabel="Отмена"
+        accept=".fb2, .epub, .mobi, .pdf"
         (uploadHandler)="onSelect($event)"
     ></p-fileUpload>
   </div>
@@ -28,7 +30,9 @@
         [customUpload]="true"
         [showUploadButton]="false"
         [multiple]="false"
-        chooseLabel="Choose img"
+        chooseLabel="Выберите изображение обложки"
+        cancelLabel="Отмена"
+        accept="image/*"
         (uploadHandler)="onSelectImg($event)"
     ></p-fileUpload>
   </div>
@@ -38,7 +42,7 @@
             [options]="tags"
             [editable]="true"
             [showClear]="true"
-            placeholder="Select a TAG"
+            placeholder="Выберите теги"
             optionLabel="name"
             optionValue="name"
             formControlName="tagName"
@@ -49,7 +53,7 @@
     <p-dropdown
       [options]="categories"
       [showClear]="true"
-      placeholder="Select a category"
+      placeholder="Выберите категории"
       optionLabel="name"
       optionValue="name"
       formControlName="category"
@@ -61,12 +65,11 @@
   <div class="mt-4 mb-4">
     <p-inputMask
       [showClear]="true"
-      placeholder="Year of publishing"
+      placeholder="Год издания"
       mask="9999-99-99"
       formControlName="yearOfPublishing"
     ></p-inputMask>
   </div>
 
-  <p-button label="Create" type="submit" class="mt-4"></p-button>
+  <p-button label="Сохранить" type="submit" class="mt-4"></p-button>
 </form>
-
