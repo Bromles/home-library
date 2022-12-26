@@ -6,19 +6,21 @@ import {BookComponent} from "./book.component";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {DropdownModule} from "primeng/dropdown";
+import {InputMaskModule} from "primeng/inputmask";
 
 @NgModule({
     declarations: [
       BookComponent,
     ],
-  imports: [
-    CommonModule,
-    BookRoutingModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    DropdownModule,
-  ],
+    imports: [
+        CommonModule,
+        BookRoutingModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        ButtonModule,
+        DropdownModule,
+        InputMaskModule,
+    ],
     providers: [],
 })export class BookModule {
 }

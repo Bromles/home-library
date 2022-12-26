@@ -4,6 +4,8 @@ import {environment} from "../../../environments/environment";
 import {BookService} from "../../services/book/book.service";
 import {TagService} from "../../services/tag/tag.service";
 import {TagDto} from "../../services/tag/dto/tag-dto";
+import {CategoryDto} from "../../services/category/dto/category-dto";
+import {CategoryService} from "../../services/category/category.service";
 
 @Component({
   selector: 'app-books',
@@ -14,7 +16,10 @@ export class BooksComponent implements OnInit {
 
   books: BookDto[] = []
   tags: TagDto[] = []
+  categories: CategoryDto[] = []
   selectedTags: TagDto[] = []
+  selectedCategories: CategoryDto[] = []
+
 
   filterBooks: BookDto[] = []
 
@@ -25,6 +30,7 @@ export class BooksComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private tagService: TagService,
+    private categoryService: CategoryService
   ) {
   }
 
@@ -40,14 +46,16 @@ export class BooksComponent implements OnInit {
         },
         error: e => console.error(e)
       });
-    this.getTags()
+    this.getTags();
+    this.getCategories()
   }
 
   filter() {
     console.log(this.selectedTags.length === 0)
     this.filterBooks =
       this.books.filter((book) =>
-        this.selectedTags.length === 0 || this.selectedTags.find((tag) => tag.name === book.tagName)
+        (this.selectedTags.length === 0 || this.selectedTags.find((tag) => tag.name === book.tagName)) &&
+        (this.selectedCategories.length === 0 || this.selectedCategories.find((category) => category.name === book.category))
       )
   }
 
@@ -55,6 +63,14 @@ export class BooksComponent implements OnInit {
     this.tagService.getAllTag().subscribe({
       next: tags => {
         this.tags = tags
+      }
+    })
+  }
+
+  getCategories() {
+    this.categoryService.getAllCategories().subscribe({
+      next: categories => {
+        this.categories = categories
       }
     })
   }
