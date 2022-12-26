@@ -1,5 +1,5 @@
 <div class="grid mt-3">
-  <div class="col-4 p-fluid">
+  <div class="col-6 p-fluid">
     <p-multiSelect
             [options]="tags"
             [(ngModel)]="selectedTags"
@@ -9,9 +9,18 @@
             selectedItemsLabel="{0} items selected"
     ></p-multiSelect>
   </div>
-  <div class="col-8">
+  <div class="col-6 p-fluid">
+    <p-multiSelect
+      [options]="categories"
+      [(ngModel)]="selectedCategories"
+      (onChange)="filter()"
+      defaultLabel="Select categories"
+      optionLabel="name"
+      selectedItemsLabel="{0} items selected"
+    ></p-multiSelect>
+  </div>
+  <div class="col-12">
     <p-dataView #dv [value]="filterBooks" [paginator]="true" [rows]="18" layout="grid" filterBy="name">
-
       <ng-template pTemplate="header">
         <div class="flex flex-column md:flex-row md:justify-content-between">
           <input type="search" pInputText placeholder="Search by brand" (input)="dv.filter($any($event.target).value)">
