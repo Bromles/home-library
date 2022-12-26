@@ -4,7 +4,7 @@
             [options]="tags"
             [(ngModel)]="selectedTags"
             (onChange)="filter()"
-            defaultLabel="Select TAGs"
+            defaultLabel="Выберите теги"
             optionLabel="name"
             selectedItemsLabel="{0} items selected"
     ></p-multiSelect>
@@ -14,16 +14,16 @@
       [options]="categories"
       [(ngModel)]="selectedCategories"
       (onChange)="filter()"
-      defaultLabel="Select categories"
+      defaultLabel="Выберите категории"
       optionLabel="name"
       selectedItemsLabel="{0} items selected"
     ></p-multiSelect>
   </div>
   <div class="col-12">
-    <p-dataView #dv [value]="filterBooks" [paginator]="true" [rows]="18" layout="grid" filterBy="name">
+    <p-dataView #dv [value]="filterBooks" [paginator]="true" [rows]="18" layout="grid" filterBy="name" emptyMessage="Книг не найдено">
       <ng-template pTemplate="header">
         <div class="flex flex-column md:flex-row md:justify-content-between">
-          <input type="search" pInputText placeholder="Search by brand" (input)="dv.filter($any($event.target).value)">
+          <input type="search" pInputText placeholder="Поиск" (input)="dv.filter($any($event.target).value)">
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
         </div>
       </ng-template>
@@ -60,6 +60,3 @@
     </p-dataView>
   </div>
 </div>
-
-
-

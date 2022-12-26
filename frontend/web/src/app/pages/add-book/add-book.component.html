@@ -18,6 +18,8 @@
         [showUploadButton]="false"
         [multiple]="false"
         chooseLabel="Выберите файл"
+        cancelLabel="Отмена"
+        accept=".fb2, .epub, .mobi, .pdf"
         (uploadHandler)="onSelect($event)"
     ></p-fileUpload>
   </div>
@@ -29,6 +31,8 @@
         [showUploadButton]="false"
         [multiple]="false"
         chooseLabel="Выберите изображение обложки"
+        cancelLabel="Отмена"
+        accept="image/*"
         (uploadHandler)="onSelectImg($event)"
     ></p-fileUpload>
   </div>
@@ -49,7 +53,7 @@
     <p-dropdown
       [options]="categories"
       [showClear]="true"
-      placeholder="Выберите категорию"
+      placeholder="Выберите категории"
       optionLabel="name"
       optionValue="name"
       formControlName="category"
