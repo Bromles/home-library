@@ -67,7 +67,7 @@ export class AddBookComponent implements OnDestroy {
         formData.append('tagName', this.bookForm.value.tagName);
         formData.append('category', this.bookForm.value.category);
         formData.append('yearOfPublishing', this.bookForm.value.yearOfPublishing);
-        this.bookService.createBook(formData)
+        this.bookService.createBook(formData).subscribe(res => console.log(res));
     }
 
     onSelect(event: { files: any[]; }) {
