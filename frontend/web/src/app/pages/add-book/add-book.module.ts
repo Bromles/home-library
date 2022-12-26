@@ -7,6 +7,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {FileUploadModule} from "primeng/fileupload";
 import {DropdownModule} from "primeng/dropdown";
+import {InputMaskModule} from "primeng/inputmask";
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {DropdownModule} from "primeng/dropdown";
     ButtonModule,
     FileUploadModule,
     DropdownModule,
+    InputMaskModule,
   ],
     providers: [],
 })export class AddBookModule {

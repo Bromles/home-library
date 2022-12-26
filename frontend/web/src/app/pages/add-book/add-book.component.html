@@ -52,19 +52,20 @@
       placeholder="Select a category"
       optionLabel="name"
       optionValue="name"
-      formControlName="categoryName"
+      formControlName="category"
     ></p-dropdown>
   </div>
 
-<!--  <span class="p-float-label mt-4">-->
-<!--    <input id="category" type="text" pInputText formControlName="category">-->
-<!--    <label for="category">Category</label>-->
-<!--  </span>-->
 
-  <span class="p-float-label mt-4 mb-4">
-    <input id="yearOfPublishing" type="text" pInputText formControlName="yearOfPublishing">
-    <label for="yearOfPublishing">Year of publishing</label>
-  </span>
+
+  <div class="mt-4 mb-4">
+    <p-inputMask
+      [showClear]="true"
+      placeholder="Year of publishing"
+      mask="9999-99-99"
+      formControlName="yearOfPublishing"
+    ></p-inputMask>
+  </div>
 
   <p-button label="Create" type="submit" class="mt-4"></p-button>
 </form>
