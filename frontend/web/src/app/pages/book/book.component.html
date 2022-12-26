@@ -1,9 +1,14 @@
-<form [formGroup]="bookUpdateForm" (ngSubmit)="updateBook()" class="p-fluid">
-  <h3>Book</h3>
 
-  <div class="col-6 col-offset-3 justify-content-center flex">
-    <img src="{{url}}book/{{book?.id}}/img" [alt]="book?.name">
-  </div>
+<h3>Book</h3>
+<div class="col-6 col-offset-3 justify-content-center flex">
+  <img src="{{url}}book/{{book?.id}}/img" [alt]="book?.name">
+</div>
+<div class="col-6 col-offset-3 justify-content-center flex">
+  <a href="{{url}}book/{{book?.id}}/file" class="p-button">Download file</a>
+</div>
+
+
+<form [formGroup]="bookUpdateForm" (ngSubmit)="updateBook()" class="p-fluid">
 
   <span class="p-float-label mt-4">
     <input id="float-input" type="text" pInputText formControlName="name">
