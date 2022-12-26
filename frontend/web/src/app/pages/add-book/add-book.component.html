@@ -1,9 +1,10 @@
 <form [formGroup]="bookForm" (ngSubmit)="createBook()" class="p-fluid">
   <h3>Create Book</h3>
   <span class="p-float-label mt-4">
-    <input id="float-input" type="text" pInputText formControlName="name">
+    <input id="float-input" type="text" pInputText formControlName="name" >
     <label for="float-input">Name</label>
   </span>
+
 
   <span class="p-float-label mt-4">
     <input id="author" type="text" pInputText formControlName="author">

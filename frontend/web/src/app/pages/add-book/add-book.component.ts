@@ -89,4 +89,6 @@ export class AddBookComponent implements OnInit, OnDestroy {
       this.bookForm.get('img')!.updateValueAndValidity();
     }
   }
+
+  get name() { return this.bookForm.get('name'); }
 }

@@ -91,4 +91,14 @@ export class BookComponent {
     });
   }
 
+  downloadMyFile(){
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', this.url + `/${this.bookId}/file`);
+    link.setAttribute('download', `${this.book?.name}`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
 }
