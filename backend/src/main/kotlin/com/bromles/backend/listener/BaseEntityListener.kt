@@ -1,10 +1,10 @@
 package com.bromles.backend.listener
 
 import com.bromles.backend.model.BaseEntity
+import jakarta.persistence.PrePersist
+import jakarta.persistence.PreUpdate
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
-import javax.persistence.PrePersist
-import javax.persistence.PreUpdate
 
 @Component
 class BaseEntityListener {

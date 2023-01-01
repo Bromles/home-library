@@ -1,6 +1,6 @@
 package com.bromles.backend.model
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Table
 @Entity
