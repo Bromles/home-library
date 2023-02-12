@@ -12,7 +12,7 @@ import org.mapstruct.ReportingPolicy
 )
 interface CategoryMapper {
 
-//    @Mapping(source = "tag.name", target = "tagName")
+    //    @Mapping(source = "tag.name", target = "tagName")
 //    @Mapping(source = "category.name", target = "category")
     fun toCategoryDto(category: Category): CategoryDto
     fun toCategoryDto(categories: List<Category>): List<CategoryDto>

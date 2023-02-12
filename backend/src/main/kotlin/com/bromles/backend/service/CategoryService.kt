@@ -24,13 +24,14 @@ class CategoryService(
             .orElseThrow { NotFoundException("Not found category by id = $id") }
         )
 
-    fun modifyCategory(id: Long, categoryDto: CategoryDto) : CategoryDto {
+    fun modifyCategory(id: Long, categoryDto: CategoryDto): CategoryDto {
         val category = categoryRepository.findById(id)
             .orElseThrow { NotFoundException("Not found category by id = $id") }
         category.name = categoryDto.name
         categoryRepository.save(category)
         return categoryMapper.toCategoryDto(category)
     }
+
     fun createOrGet(name: String): Category =
         categoryRepository.findByName(name)
             ?: throw NotFoundException("Not found category by name = $name")

@@ -72,6 +72,6 @@ class BookService(
         val category: Category = categoryService.createOrGet(bookDto.category)
         book.tag = tag
         book.category = category
-        return bookMapper.toBookDto(bookRepository.save(book));
+        return bookMapper.toBookDto(bookRepository.save(book))
     }
 }

@@ -16,4 +16,4 @@ data class UpdateBookRequestDto(
     @JsonDeserialize(using = LocalDateDeserializer::class)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     val yearOfPublishing: LocalDate,
-) { }
+)

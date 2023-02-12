@@ -7,7 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
 
-data class BookResponseDto (
+data class BookResponseDto(
     val id: Long,
     val name: String,
     val author: String,

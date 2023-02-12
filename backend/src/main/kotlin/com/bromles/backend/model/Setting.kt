@@ -8,7 +8,7 @@ import jakarta.persistence.Table
 
 @Table
 @Entity
-class Setting (
+class Setting(
     @OneToOne
     @JoinColumn(name = "USER_ID")
     val user: User,
