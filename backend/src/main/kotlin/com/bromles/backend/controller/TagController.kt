@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/tags")
+@RequestMapping("/api/v1/tags")
 class TagController(
     private val tagService: TagService,
 ) {

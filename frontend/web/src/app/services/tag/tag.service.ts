@@ -14,6 +14,6 @@ export class TagService {
   ) { }
 
   getAllTag(): Observable<TagDto[]> {
-    return this.httpClient.get<TagDto[]>(environment.backendUrl + "tags")
+    return this.httpClient.get<TagDto[]>(environment.backendUrl + "/v1/tags")
   }
 }

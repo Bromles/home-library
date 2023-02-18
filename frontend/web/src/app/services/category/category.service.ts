@@ -14,6 +14,6 @@ export class CategoryService {
   ) { }
 
   getAllCategories(): Observable<CategoryDto[]> {
-    return this.httpClient.get<CategoryDto[]>(environment.backendUrl + "category")
+    return this.httpClient.get<CategoryDto[]>(environment.backendUrl + "/v1/category")
   }
 }

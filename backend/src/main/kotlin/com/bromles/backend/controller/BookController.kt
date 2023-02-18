@@ -14,7 +14,7 @@ import javax.validation.Valid
 @Validated
 @RestController
 @CrossOrigin(origins = ["*"])
-@RequestMapping("/book")
+@RequestMapping("/api/v1/book")
 class BookController(
     private val bookService: BookService,
 ) {

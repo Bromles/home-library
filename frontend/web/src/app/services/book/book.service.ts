@@ -16,11 +16,11 @@ export class BookService {
     }
 
     getAllBooks(): Observable<BookDto[]> {
-        return this.httpClient.get<BookDto[]>(environment.backendUrl + "book")
+        return this.httpClient.get<BookDto[]>(environment.backendUrl + "/v1/book")
     }
 
     createBook(formData: FormData): Observable<BookDto> {
-        return this.httpClient.post(environment.backendUrl + "book", formData)
+        return this.httpClient.post(environment.backendUrl + "/v1/book", formData)
             .pipe(
                 map((value: any) => {
                     console.log(value)
@@ -30,11 +30,11 @@ export class BookService {
     }
 
     getBook(bookId: number): Observable<BookDto> {
-        return this.httpClient.get<BookDto>(environment.backendUrl + `book/${bookId}`)
+        return this.httpClient.get<BookDto>(environment.backendUrl + `/v1/book/${bookId}`)
     }
 
     updateBook(bookId: number, bookDto: BookDto) {
-        return this.httpClient.put<BookDto>(environment.backendUrl + `book/${bookId}`, bookDto)
+        return this.httpClient.put<BookDto>(environment.backendUrl + `/v1/book/${bookId}`, bookDto)
     }
 
     deleteBook(bookId: number) {
