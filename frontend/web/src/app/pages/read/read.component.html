@@ -1,0 +1,16 @@
+<h3>{{heading}}</h3>
+
+<div id="outerContainer">
+  <div class="pdf-container">
+    <pdf-viewer src="{{url}}book/{{bookId}}/file"
+                [render-text]="true"
+                [original-size]="false"
+                [fit-to-page]="false"
+                [zoom-scale]="'page-width'"
+                [autoresize]="true"
+                style="width: 100%; height: 1240px"
+                [show-borders] = "true"
+                (error)="onError($event)"
+    ></pdf-viewer>
+  </div>
+</div>

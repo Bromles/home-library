@@ -9,6 +9,14 @@ const routes: Routes = [
         component: HomeComponent
     },
     {
+      path: 'read/:id',
+      loadChildren: () => import('./pages/read/read.module').then(m => m.ReadModule),
+      canActivate: [AuthGuard],
+      data: {
+        roles: ['user']
+      }
+    },
+    {
         path: 'add-book',
         loadChildren: () => import('./pages/add-book/add-book.module').then(m => m.AddBookModule),
         canActivate: [AuthGuard],
