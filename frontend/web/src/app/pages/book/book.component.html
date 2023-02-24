@@ -5,8 +5,8 @@
   <img src="{{url}}book/{{book?.id}}/img" [alt]="book?.name">
 </div>
 <div class="justify-content-center flex">
-    <a href="{{url}}book/{{book?.id}}/file" class="mr-3 justify-content-center flex p-button" >Download file</a>
-    <a routerLink="/read/{{book?.id}}" class="ml-7 justify-content-center flex p-button" >Open file (pdf only)</a>
+    <a href="{{url}}book/{{book?.id}}/file" class="mr-3 justify-content-center flex p-button" >Загрузить</a>
+    <a routerLink="/read/{{book?.id}}" class="ml-7 justify-content-center flex p-button" >Открыть файл (pdf only)</a>
 </div>
 
 
@@ -15,12 +15,12 @@
 
   <span class="p-float-label mt-4">
     <input id="float-input" type="text" pInputText formControlName="name">
-    <label for="float-input">Name</label>
+    <label for="float-input">Название</label>
   </span>
 
   <span class="p-float-label mt-4">
     <input id="author" type="text" pInputText formControlName="author">
-    <label for="author">Author</label>
+    <label for="author">Автор</label>
   </span>
 
   <div class="mt-4">
@@ -28,7 +28,7 @@
       [options]="tags"
       [editable]="true"
       [showClear]="true"
-      placeholder="Select a TAG"
+      placeholder="Выберите теги"
       optionLabel="name"
       optionValue="name"
       formControlName="tagName"
@@ -39,7 +39,7 @@
     <p-dropdown
       [options]="categories"
       [showClear]="true"
-      placeholder="Select a category"
+      placeholder="Выберите категории"
       optionLabel="name"
       optionValue="name"
       formControlName="category"
@@ -49,11 +49,11 @@
   <div class="mt-4 mb-4">
     <p-inputMask
       [showClear]="true"
-      placeholder="Year of publishing"
+      placeholder="Год издания"
       mask="9999-99-99"
       formControlName="yearOfPublishing"
     ></p-inputMask>
   </div>
 
-  <p-button label="Update" type="submit" class="mt-4"></p-button>
+  <p-button label="Сохранить" type="submit" class="mt-4"></p-button>
 </form>
