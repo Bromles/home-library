@@ -1,11 +1,14 @@
 
 <h3>Book</h3>
+
 <div class="col-6 col-offset-3 justify-content-center flex">
   <img src="{{url}}book/{{book?.id}}/img" [alt]="book?.name">
 </div>
-<div class="col-6 col-offset-3 justify-content-center flex">
-  <a href="{{url}}book/{{book?.id}}/file" class="p-button">Download file</a>
+<div class="justify-content-center flex">
+    <a href="{{url}}book/{{book?.id}}/file" class="mr-3 justify-content-center flex p-button" >Download file</a>
+    <a routerLink="/read/{{book?.id}}" class="ml-7 justify-content-center flex p-button" >Open file (pdf only)</a>
 </div>
+
 
 
 <form [formGroup]="bookUpdateForm" (ngSubmit)="updateBook()" class="p-fluid">
