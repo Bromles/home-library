@@ -4,10 +4,14 @@ import com.bromles.backend.dto.BookRequestDto
 import com.bromles.backend.dto.BookResponseDto
 import com.bromles.backend.dto.UpdateBookRequestDto
 import com.bromles.backend.service.BookService
+import com.bromles.backend.utils.SecurityUtil
 import org.springframework.core.io.InputStreamResource
 import org.springframework.http.*
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.oauth2.jwt.Jwt
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
 import org.springframework.web.bind.annotation.*
+import java.security.Principal
 
 
 @RestController
@@ -19,8 +23,11 @@ class BookController(
 
     @PreAuthorize("hasRole('USER')")
     @GetMapping
-    fun getAllBook(): List<BookResponseDto> =
-        bookService.getAllBook()
+    fun getAllBook(): List<BookResponseDto> {
+        println(SecurityUtil.getUsername())
+
+        return bookService.getAllBook()
+    }
 
     @PostMapping(consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     @ResponseStatus(HttpStatus.CREATED)

@@ -6,6 +6,7 @@ export class BookDto {
     tagName?:  string;
     category?: string;
     yearOfPublishing?: string;
+    createdUserId?: string
 
 
     public constructor(init?: Partial<BookDto>) {

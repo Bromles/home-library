@@ -36,4 +36,8 @@ export class BookService {
     updateBook(bookId: number, bookDto: BookDto) {
         return this.httpClient.put<BookDto>(environment.backendUrl + `book/${bookId}`, bookDto)
     }
+
+    deleteBook(bookId: number) {
+        return this.httpClient.delete(environment.backendUrl + `book/${bookId}`)
+    }
 }
