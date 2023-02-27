@@ -17,7 +17,6 @@ abstract class BaseEntity(
     @Column(name = "UPDATED_DATE")
     open var updatedDate: LocalDateTime? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CREATED_USER_ID")
-    open var createdUser: User? = null
+    @Column(name = "CREATED_USER_ID")
+    open var createdUserId: String? = null
 )

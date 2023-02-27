@@ -9,6 +9,7 @@ import {CategoryService} from "../../services/category/category.service";
 import {TagDto} from "../../services/tag/dto/tag-dto";
 import {CategoryDto} from "../../services/category/dto/category-dto";
 import {Subscription} from "rxjs";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
     selector: 'app-book',
@@ -34,7 +35,8 @@ export class BookComponent implements OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private tagService: TagService,
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private authService: AuthService
     ) {
         this.bookId = Number(this.route.snapshot.paramMap.get('id'));
         this.loadBook()
@@ -60,6 +62,10 @@ export class BookComponent implements OnDestroy {
         this.subscriptionCategories.unsubscribe()
     }
 
+    havePermissions(): boolean {
+        return this.authService.getUsername() === this.book?.createdUserId
+    }
+
     updateBook() {
         this.bookService.updateBook(this.bookId, new BookDto(this.bookUpdateForm.value))
             .subscribe({
@@ -70,6 +76,19 @@ export class BookComponent implements OnDestroy {
                     console.error(error);
                 }
             })
+    }
+
+    deleteBook() {
+        this.bookService.deleteBook(this.bookId)
+          .subscribe({
+              next: body => {
+                  console.log(body);
+                  this.router.navigate(['/books'])
+              },
+              error: error => {
+                  console.error(error);
+              }
+          })
     }
 
     private loadBook() {

@@ -19,4 +19,5 @@ data class BookResponseDto (
     @JsonDeserialize(using = LocalDateDeserializer::class)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     val yearOfPublishing: LocalDate,
+    val createdUserId: String,
 )

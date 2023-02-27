@@ -4,12 +4,14 @@ import com.bromles.backend.dto.BookFileDto
 import com.bromles.backend.dto.BookRequestDto
 import com.bromles.backend.dto.BookResponseDto
 import com.bromles.backend.dto.UpdateBookRequestDto
+import com.bromles.backend.exception.ForbiddenException
 import com.bromles.backend.exception.NotFoundException
 import com.bromles.backend.mapper.BookMapper
 import com.bromles.backend.model.Book
 import com.bromles.backend.model.Category
 import com.bromles.backend.model.Tag
 import com.bromles.backend.repository.BookRepository
+import com.bromles.backend.utils.SecurityUtil
 import org.springframework.core.io.InputStreamResource
 import org.springframework.stereotype.Service
 import java.io.ByteArrayInputStream
@@ -47,14 +49,23 @@ class BookService(
         val tag: Tag = tagService.createOrGet(bookRequestDto.tagName)
         val category: Category = categoryService.createOrGet(bookRequestDto.category)
         val toBook = Book(bookRequestDto, tag, category)
+        toBook.createdUserId = SecurityUtil.getUsername()
         return bookMapper.toBookDto(bookRepository.save(toBook))
     }
 
-    fun delete(id: Long) =
+    fun delete(id: Long) {
+        val book = getBook(id)
+        if (SecurityUtil.getUsername() == book.createdUserId) {
+            throw ForbiddenException("No access to delete book id = $id")
+        }
         bookRepository.deleteById(id)
+    }
 
     fun updateBook(id: Long, bookDto: UpdateBookRequestDto): BookResponseDto {
         val book = getBook(id)
+        if (SecurityUtil.getUsername() == book.createdUserId) {
+            throw ForbiddenException("No access to delete book id = $id")
+        }
         book.update(bookDto)
         val tag: Tag = tagService.createOrGet(bookDto.tagName)
         val category: Category = categoryService.createOrGet(bookDto.category)

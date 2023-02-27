@@ -24,7 +24,7 @@ databaseChangeLog:
                   type: timestamp(6)
               - column:
                   name: created_user_id
-                  type: bigint
+                  type: text
         - createTable:
             tableName: user
             columns:
@@ -43,7 +43,7 @@ databaseChangeLog:
                   type: timestamp(6)
               - column:
                   name: created_user_id
-                  type: bigint
+                  type: text
         - createTable:
             tableName: role
             columns:
@@ -65,7 +65,7 @@ databaseChangeLog:
                   type: timestamp(6)
               - column:
                   name: created_user_id
-                  type: bigint
+                  type: text
         - createTable:
             tableName: settings
             columns:
@@ -84,7 +84,7 @@ databaseChangeLog:
                   type: timestamp(6)
               - column:
                   name: created_user_id
-                  type: bigint
+                  type: text
         - createTable:
             tableName: tag
             columns:
@@ -113,7 +113,7 @@ databaseChangeLog:
                   type: timestamp(6)
               - column:
                   name: created_user_id
-                  type: bigint
+                  type: text
         - createTable:
             tableName: book
             columns:
@@ -158,7 +158,7 @@ databaseChangeLog:
                   type: timestamp(6)
               - column:
                   name: created_user_id
-                  type: bigint
+                  type: text
         - createTable:
             tableName: user_role
             columns:

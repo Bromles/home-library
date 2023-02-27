@@ -1,14 +1,14 @@
-
 <h3>Book</h3>
 
 <div class="col-6 col-offset-3 justify-content-center flex">
   <img src="{{url}}book/{{book?.id}}/img" [alt]="book?.name" width="100%" height="100%">
 </div>
 <div class="justify-content-center flex">
-    <a href="{{url}}book/{{book?.id}}/file" class="mr-3 justify-content-center flex p-button" >Загрузить</a>
-    <a routerLink="/read/{{book?.id}}" class="ml-7 justify-content-center flex p-button" >Открыть файл (pdf only)</a>
-</div>
+  <a href="{{url}}book/{{book?.id}}/file" class="mr-3 justify-content-center flex p-button">Загрузить</a>
+  <a routerLink="/read/{{book?.id}}" class="ml-7 justify-content-center flex p-button">Открыть файл (pdf only)</a>
 
+  <p-button *ngIf="havePermissions()" type="button" (onClick)="deleteBook()" label="Удалить" class="ml-7 justify-content-center flex p-button-danger"></p-button>
+</div>
 
 
 <form [formGroup]="bookUpdateForm" (ngSubmit)="updateBook()" class="p-fluid">
@@ -25,35 +25,35 @@
 
   <div class="mt-4">
     <p-dropdown
-      [options]="tags"
-      [editable]="true"
-      [showClear]="true"
-      placeholder="Выберите теги"
-      optionLabel="name"
-      optionValue="name"
-      formControlName="tagName"
+            [options]="tags"
+            [editable]="true"
+            [showClear]="true"
+            placeholder="Выберите теги"
+            optionLabel="name"
+            optionValue="name"
+            formControlName="tagName"
     ></p-dropdown>
   </div>
 
   <div class="mt-4">
     <p-dropdown
-      [options]="categories"
-      [showClear]="true"
-      placeholder="Выберите категории"
-      optionLabel="name"
-      optionValue="name"
-      formControlName="category"
+            [options]="categories"
+            [showClear]="true"
+            placeholder="Выберите категории"
+            optionLabel="name"
+            optionValue="name"
+            formControlName="category"
     ></p-dropdown>
   </div>
 
   <div class="mt-4 mb-4">
     <p-inputMask
-      [showClear]="true"
-      placeholder="Год издания"
-      mask="9999-99-99"
-      formControlName="yearOfPublishing"
+            [showClear]="true"
+            placeholder="Год издания"
+            mask="9999-99-99"
+            formControlName="yearOfPublishing"
     ></p-inputMask>
   </div>
 
-  <p-button label="Сохранить" type="submit" class="mt-4"></p-button>
+  <p-button *ngIf="havePermissions()" label="Сохранить" type="submit" class="mt-4"></p-button>
 </form>
