@@ -9,6 +9,7 @@ import {TagDto} from "../../services/tag/dto/tag-dto";
 import {CategoryDto} from "../../services/category/dto/category-dto";
 import {CategoryService} from "../../services/category/category.service";
 import {Router} from "@angular/router";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
     selector: 'app-add-book',
@@ -69,8 +70,17 @@ export class AddBookComponent implements OnDestroy {
         formData.append('tagName', this.bookForm.value.tagName);
         formData.append('category', this.bookForm.value.category);
         formData.append('yearOfPublishing', this.bookForm.value.yearOfPublishing);
-        this.bookService.createBook(formData).subscribe(res => console.log(res));
-        this.router.navigate(['/books']);
+        this.bookService.createBook(formData)
+          .subscribe( {
+            next: res => {
+              console.log(res);
+              this.router.navigate(['/books']);
+            },
+            error: error => {
+              console.error(error) ;
+            }
+      });
+
     }
 
     onSelect(event: { files: any[]; }) {

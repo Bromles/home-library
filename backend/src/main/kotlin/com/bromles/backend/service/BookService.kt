@@ -55,7 +55,7 @@ class BookService(
 
     fun delete(id: Long) {
         val book = getBook(id)
-        if (SecurityUtil.getUsername() == book.createdUserId) {
+        if (SecurityUtil.getUsername() != book.createdUserId) {
             throw ForbiddenException("No access to delete book id = $id")
         }
         bookRepository.deleteById(id)
@@ -63,7 +63,7 @@ class BookService(
 
     fun updateBook(id: Long, bookDto: UpdateBookRequestDto): BookResponseDto {
         val book = getBook(id)
-        if (SecurityUtil.getUsername() == book.createdUserId) {
+        if (SecurityUtil.getUsername() != book.createdUserId) {
             throw ForbiddenException("No access to delete book id = $id")
         }
         book.update(bookDto)

@@ -1,6 +1,6 @@
 <h3>{{heading}}</h3>
 
-<div id="outerContainer">
+<div id=" outerContainer">
   <div class="pdf-container">
     <pdf-viewer src="{{url}}book/{{bookId}}/file"
                 [render-text]="true"
@@ -12,5 +12,6 @@
                 [show-borders] = "true"
                 (error)="onError($event)"
     ></pdf-viewer>
+    <button pButton pRipple type="button" icon="pi pi-times" class=" close-button p-button-rounded p-button-danger" routerLink="/books/{{bookId}}"></button>
   </div>
 </div>
