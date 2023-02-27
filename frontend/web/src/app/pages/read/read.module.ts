@@ -4,6 +4,7 @@ import {ReadComponent} from "./read.component";
 import {ReadRoutingModule} from "./read-routing.module";
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
 
 
 
@@ -12,11 +13,12 @@ import {ButtonModule} from "primeng/button";
   declarations: [
     ReadComponent,
   ],
-  imports: [
-    CommonModule,
-    ReadRoutingModule,
-    PdfViewerModule,
-    ButtonModule,
-  ]
+    imports: [
+        CommonModule,
+        ReadRoutingModule,
+        PdfViewerModule,
+        ButtonModule,
+        RippleModule,
+    ]
 })
 export class ReadModule { }
