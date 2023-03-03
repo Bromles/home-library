@@ -22,9 +22,10 @@ class BookService(
     private val tagService: TagService,
     private val categoryService: CategoryService,
     private val bookMapper: BookMapper,
-    private val userService: UserService,
 ) {
-    fun getAllBook(): List<BookResponseDto> = bookMapper.toBookDto(bookRepository.findAll())
+
+    fun getAllBook(): List<BookResponseDto> =
+        bookMapper.toBookDto(bookRepository.findAll())
 
     fun getBookDto(id: Long): BookResponseDto =
         bookMapper.toBookDto(getBook(id))

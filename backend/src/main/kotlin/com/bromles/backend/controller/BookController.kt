@@ -23,11 +23,9 @@ class BookController(
 
     @PreAuthorize("hasRole('USER')")
     @GetMapping
-    fun getAllBook(): List<BookResponseDto> {
-        println(SecurityUtil.getUsername())
+    fun getAllBook(): List<BookResponseDto> =
+        bookService.getAllBook()
 
-        return bookService.getAllBook()
-    }
 
     @PostMapping(consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     @ResponseStatus(HttpStatus.CREATED)
