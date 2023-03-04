@@ -66,8 +66,6 @@ internal class BookServiceTest {
         assertEquals("name", bookService.getBookDto(1).name)
     }
 
-
-
     @Test
     fun getBookFile() {
         whenever(bookRepository.findById(any()))

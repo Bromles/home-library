@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReadComponent } from './read.component';
+import {AppModule} from "../../app.module";
+import {ReadModule} from "./read.module";
 
 describe('ReadComponent', () => {
   let component: ReadComponent;
@@ -8,6 +10,7 @@ describe('ReadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [AppModule, ReadModule],
       declarations: [ ReadComponent ]
     })
     .compileComponents();

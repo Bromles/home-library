@@ -1,15 +1,16 @@
 import {TestBed} from '@angular/core/testing';
 
-import {TagService} from './tag.service';
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "../auth.service";
-import {OAuthService} from "angular-oauth2-oidc";
-import {TagDto} from "./dto/tag-dto";
+import {CategoryService} from "./category.service";
+import {HttpClient, HttpHandler} from "@angular/common/http";
+import {BookDto} from "../book/dto/book-dto";
+import {CategoryDto} from "./dto/category-dto";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {environment} from "../../../environments/environment";
+import {AuthService} from "../auth.service";
+import {OAuthService} from "angular-oauth2-oidc";
 
-describe('TagService', () => {
-  let service: TagService;
+describe('CategoryService', () => {
+  let service: CategoryService;
   let httpController: HttpTestingController;
 
   let url = environment.backendUrl;
@@ -19,7 +20,7 @@ describe('TagService', () => {
       imports: [HttpClientTestingModule],
       providers: [AuthService, OAuthService, HttpClient]
     });
-    service = TestBed.inject(TagService);
+    service = TestBed.inject(CategoryService);
     httpController = TestBed.inject(HttpTestingController);
   });
 
@@ -27,18 +28,18 @@ describe('TagService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getAllTag', () => {
-    let mockTagDto = new TagDto();
+  it('getAllCategories', () => {
+    let mockCategoryDto = new CategoryDto();
 
-    service.getAllTag().subscribe((res) => {
-      expect(res).toEqual([mockTagDto]);
+    service.getAllCategories().subscribe((res) => {
+      expect(res).toEqual([mockCategoryDto]);
     });
 
     const req = httpController.expectOne({
       method: 'GET',
-      url: `${url}tags`,
+      url: `${url}category`,
     });
 
-    req.flush([mockTagDto]);
+    req.flush([mockCategoryDto]);
   })
 });
