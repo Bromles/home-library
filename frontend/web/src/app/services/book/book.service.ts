@@ -19,7 +19,7 @@ export class BookService {
         return this.httpClient.get<BookDto[]>(environment.backendUrl + "book")
     }
 
-    createBook(formData: FormData) {
+    createBook(formData: FormData): Observable<BookDto> {
         return this.httpClient.post(environment.backendUrl + "book", formData)
             .pipe(
                 map((value: any) => {
