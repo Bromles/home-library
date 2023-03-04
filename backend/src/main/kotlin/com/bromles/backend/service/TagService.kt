@@ -20,9 +20,10 @@ class TagService(
     fun addTag(tagDto: TagDto): TagDto =
         tagMapper.toTagDto(tagRepository.save(Tag(tagDto.name)))
 
-    fun getTag(id: Long) : TagDto =
-        tagMapper.toTagDto(tagRepository.findById(id)
-            .orElseThrow { NotFoundException("Not found tag by id = $id") }
+    fun getTag(id: Long): TagDto =
+        tagMapper.toTagDto(
+            tagRepository.findById(id)
+                .orElseThrow { NotFoundException("Not found tag by id = $id") }
         )
 
     fun createOrGet(name: String): Tag {
