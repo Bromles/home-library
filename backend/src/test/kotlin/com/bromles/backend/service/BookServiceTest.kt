@@ -6,7 +6,6 @@ import com.bromles.backend.exception.ForbiddenException
 import com.bromles.backend.exception.NotFoundException
 import com.bromles.backend.mapper.BookMapper
 import com.bromles.backend.mapper.BookMapperImpl
-import com.bromles.backend.model.Book
 import com.bromles.backend.model.Category
 import com.bromles.backend.model.Tag
 import com.bromles.backend.repository.BookRepository
