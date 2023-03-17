@@ -80,7 +80,7 @@ internal class CategoryServiceTest {
 
     @Test
     fun createOrGet__Success(){
-        Mockito.`when`(categoryRepository.findByName(any()))
+        whenever(categoryRepository.findByName(any()))
             .thenReturn(getCategory())
 
         Assertions.assertEquals("name", categoryService.createOrGet("name").name)

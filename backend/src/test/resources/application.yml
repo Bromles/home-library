@@ -5,13 +5,19 @@ home_library:
   search_engine:
     url: ${SEARCH_ENGINE_URL:}
     key: ${SEARCH_ENGINE_KEY:}
+  auth_server:
+    url: ${AUTH_SERVER_URL:}
+    grant_type: ${AUTH_SERVER_GRANT_TYPE:}
+    realm: ${AUTH_SERVER_REALM:}
+    client_id: ${AUTH_SERVER_CLIENT_ID:}
+    client_secret: ${AUTH_SERVER_CLIENT_SECRET:}
 
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: ${AUTH_SERVER_URL:}
+          jwk-set-uri: ${AUTH_SERVER_URL:http://localhost:8099/realms/home_library/protocol/openid-connect/certs}
   main:
     banner-mode: off
   sql:
