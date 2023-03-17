@@ -7,7 +7,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.multipart.MultipartFile
 import java.time.LocalDate
-import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 data class BookRequestDto(

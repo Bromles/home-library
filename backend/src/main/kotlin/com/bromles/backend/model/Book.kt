@@ -2,6 +2,8 @@ package com.bromles.backend.model
 
 import com.bromles.backend.dto.BookRequestDto
 import com.bromles.backend.dto.UpdateBookRequestDto
+import org.hibernate.annotations.Cascade
+import org.hibernate.annotations.CascadeType
 import java.time.LocalDate
 import javax.persistence.*
 
