@@ -21,6 +21,7 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.put
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -486,14 +487,93 @@ internal class BookControllerIntegrationTest {
     }
 
     @Test
-    fun deleteBook() {
+    fun deleteBook_NotFound() {
+        mvc!!.delete("/book/1") {
+            with(
+                jwt()
+                    .authorities(SimpleGrantedAuthority("ROLE_USER"))
+                    .jwt { it.claim("preferred_username", "name") }
+            )
+        }.andDo {
+            handle {
+                println(it.response.contentAsString)
+            }
+        }.andExpect {
+            status { isNotFound() }
+        }
+
     }
 
     @Test
-    fun getBookFile() {
+    fun deleteBook_Forbidden() {
+        val tag = Tag("tag")
+        val category = Category("category")
+        tagRepository.save(tag)
+        categoryRepository.save(category)
+
+        val book = Book(
+            "name",
+            "author",
+            LocalDate.now(),
+            tag,
+            category,
+            "img".toByteArray(),
+            "file".toByteArray(),
+            "filename"
+        )
+        book.createdUserId = "anotherName"
+        val savedBook = bookRepository.save(book)
+        mvc!!.delete("/book/" + savedBook.id) {
+            with(
+                jwt()
+                    .authorities(SimpleGrantedAuthority("ROLE_USER"))
+                    .jwt { it.claim("preferred_username", "name") }
+            )
+        }.andDo {
+            handle {
+                println(it.response.contentAsString)
+            }
+        }.andExpect {
+            status { isForbidden() }
+        }
+
     }
 
     @Test
-    fun getBookImg() {
+    fun deleteBook_Success() {
+        val tag = Tag("tag")
+        val category = Category("category")
+        tagRepository.save(tag)
+        categoryRepository.save(category)
+
+        val book = Book(
+            "name",
+            "author",
+            LocalDate.now(),
+            tag,
+            category,
+            "img".toByteArray(),
+            "file".toByteArray(),
+            "filename"
+        )
+        book.createdUserId = "name"
+        val savedBook = bookRepository.save(book)
+        mvc!!.delete("/book/" + savedBook.id) {
+            with(
+                jwt()
+                    .authorities(SimpleGrantedAuthority("ROLE_USER"))
+                    .jwt { it.claim("preferred_username", "name") }
+            )
+        }.andDo {
+            handle {
+                println(it.response.contentAsString)
+            }
+        }.andExpect {
+            status { isNoContent() }
+        }
+
+        assertEquals(0, bookRepository.findAll().size)
+        assertEquals(1, categoryRepository.findAll().size)
+        assertEquals(1, tagRepository.findAll().size)
     }
 }
