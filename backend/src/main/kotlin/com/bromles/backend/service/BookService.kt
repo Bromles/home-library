@@ -48,8 +48,12 @@ class BookService(
 
     fun createBook(bookRequestDto: BookRequestDto): BookResponseDto {
         val tag: Tag = tagService.createOrGet(bookRequestDto.tagName)
-        val category: Category = categoryService.createOrGet(bookRequestDto.category)
-        val toBook = Book(bookRequestDto, tag, category)
+        val category: Category? = bookRequestDto.category?.let { categoryService.createOrGet(it) }
+
+        var toBook: Book
+
+        category?.let { toBook = Book(bookRequestDto, tag, category) }
+
         toBook.createdUserId = SecurityUtil.getUsername()
         return bookMapper.toBookDto(bookRepository.save(toBook))
     }

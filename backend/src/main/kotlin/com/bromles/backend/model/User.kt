@@ -1,10 +1,11 @@
 package com.bromles.backend.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.OneToMany
-import jakarta.persistence.OneToOne
-import jakarta.persistence.Table
+
 import java.util.*
+import javax.persistence.Entity
+import javax.persistence.OneToMany
+import javax.persistence.OneToOne
+import javax.persistence.Table
 
 @Table
 @Entity

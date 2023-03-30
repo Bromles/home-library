@@ -1,19 +1,21 @@
 package com.bromles.backend.model
 
-import com.bromles.backend.listener.BaseEntityListener
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
 import javax.persistence.*
 
 @MappedSuperclass
-@EntityListeners(BaseEntityListener::class)
 abstract class BaseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     open var id: Long = 0,
 
+    @CreationTimestamp
     @Column(name = "CREATED_DATE")
     open var createdDate: LocalDateTime? = null,
 
+    @UpdateTimestamp
     @Column(name = "UPDATED_DATE")
     open var updatedDate: LocalDateTime? = null,
 

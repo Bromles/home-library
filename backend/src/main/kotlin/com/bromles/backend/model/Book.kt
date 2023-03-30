@@ -3,7 +3,7 @@ package com.bromles.backend.model
 import com.bromles.backend.dto.BookRequestDto
 import com.bromles.backend.dto.UpdateBookRequestDto
 import java.time.LocalDate
-import jakarta.persistence.*
+import javax.persistence.*
 
 @Table
 @Entity

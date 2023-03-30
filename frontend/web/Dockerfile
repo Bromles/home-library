@@ -2,10 +2,11 @@
 FROM node:18-alpine as builder
 WORKDIR /app
 COPY package.json .
-COPY package-lock.json .
-RUN npm i
+COPY yarn-lock.json .
+RUN yarn
 COPY . .
-RUN npm run build
+RUN yarn
+RUN yarn run build
 
 # production environment
 FROM nginx:1.21.0-alpine as production
