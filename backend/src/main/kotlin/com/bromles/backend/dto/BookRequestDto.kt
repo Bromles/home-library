@@ -10,19 +10,19 @@ import java.time.LocalDate
 import javax.validation.constraints.Size
 
 data class BookRequestDto(
-    @field:Size(min=3, max=50)
+    @field:Size(min = 3, max = 50)
     val name: String,
 
-    @field:Size(min=5, max=50)
+    @field:Size(min = 5, max = 50)
     val author: String,
 
     var img: MultipartFile,
     var file: MultipartFile,
 
-    @field:Size(min=1, max=50)
+    @field:Size(min = 1, max = 50)
     val tagName: String,
 
-    @field:Size(min=1, max=50)
+    @field:Size(min = 1, max = 50)
     val category: String?,
 
     @JsonSerialize(using = LocalDateSerializer::class)
