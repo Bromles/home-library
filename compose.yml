@@ -24,14 +24,14 @@ services:
 
   search_engine:
     container_name: search_engine
-    image: getmeili/meilisearch:v0.30
+    image: getmeili/meilisearch:v1.0
     volumes:
       - meili_data:/data/meili_data
     depends_on:
       - database
     restart: unless-stopped
     environment:
-      MEILI_MASTER_KEY: masterKey
+      MEILI_MASTER_KEY: "veryLongAndVerySecretMasterKey"
       MEILI_NO_ANALYTICS: "true"
     ports:
       - "7123:7700"
