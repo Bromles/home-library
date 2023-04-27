@@ -24,3 +24,26 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  e2e_test:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Set volume
+        run: ./.github/e2e/set_volume_from_archive.sh
+        shell: bash
+      - name: Rub docker compose
+        run: ./run.sh
+        shell: bash
+      - name: Install Node
+          uses: actions/setup-node@v1
+          with:
+            node-version: "16"
+      - name: Install Dependencies
+          run: npm i
+      - name: Run Cypress
+          uses: cypress-io/github-action@v2
+          with:
+            start: npm run start
+
