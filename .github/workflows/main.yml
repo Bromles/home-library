@@ -37,13 +37,13 @@ jobs:
         run: ./run.sh
         shell: bash
       - name: Install Node
-          uses: actions/setup-node@v1
-          with:
-            node-version: "16"
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16"
       - name: Install Dependencies
-          run: npm i
+        run: npm i
       - name: Run Cypress
-          uses: cypress-io/github-action@v2
-          with:
-            start: npm run start
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run start
 
