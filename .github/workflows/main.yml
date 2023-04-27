@@ -7,20 +7,29 @@ on:
       - master
 
 jobs:
-  build_and_test:
 
+  e2e_test:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Set volume
+        run: sudo sh ./set_volume_from_archive.sh
+        shell: bash
+      - name: Set java 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
           distribution: 'temurin'
-      - name: Run tests
-        run: mvn -f backend/pom.xml verify
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+          java-version: '17'
+      - name: Rub docker compose
+        run: ./run.sh
+        shell: bash
+      - name: Install Node
+        uses: actions/setup-node@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          node-version: "16"
+      - name: Run Cypress
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: frontend/web/
+

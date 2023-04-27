@@ -1,0 +1,4 @@
+BACKUP_PATH=./volume_backup &&
+BACKUP_DOCKER_PATH=/home/runner/work/home-library/home-library/volume_backup &&
+VOLUME_NAME=home-library_db-data &&
+docker run --rm -v $VOLUME_NAME:/volume -v $BACKUP_DOCKER_PATH:/backup alpine sh -c "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/db-data_archive.tar.bz2"

@@ -1,1 +1,1 @@
-cd backend && ./mvnw spring-boot:build-image && cd ../ && docker compose up --build
+cd backend && ./mvnw -version && ./mvnw spring-boot:build-image && cd ../ && docker compose up -d --build
