@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: "16"
       - name: Run Cypress
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
           working-directory: frontend/web/
 
