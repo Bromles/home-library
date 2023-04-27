@@ -36,6 +36,7 @@ spring:
         format_sql: true
   liquibase:
     change-log: classpath:db/changelog/changelog.yaml
+    dropFirst: true
   servlet:
     multipart:
       max-file-size: 200MB
