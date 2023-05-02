@@ -29,7 +29,7 @@ describe('Add book', () => {
     cy.get('#categories > .p-dropdown > .p-dropdown-trigger').click().wait(5000)
     cy.get('[ng-reflect-label="c1"] > .p-ripple').click()
     cy.get('#year').type('2001-01-01')
-    cy.get('#addBook > .p-ripple').click().wait(100)
+    cy.get('#addBook > .p-ripple').click().wait(5000)
     cy.location('pathname').should('eq', '/books')
     cy.contains('Book Name')
   })
@@ -44,7 +44,7 @@ describe('Add book', () => {
     cy.get('#categories > .p-dropdown > .p-dropdown-trigger').click().wait(5000)
     cy.get('[ng-reflect-label="c1"] > .p-ripple').click()
     cy.get('#year').type('2001-01-01')
-    cy.get('#addBook > .p-ripple').click().wait(100)
+    cy.get('#addBook > .p-ripple').click().wait(5000)
     cy.location('pathname').should('eq', '/add-book')
   })
 
