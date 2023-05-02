@@ -34,7 +34,7 @@ jobs:
           working-directory: frontend/web/
           browser: chrome
           record: true
-          wait-on: http://localhost:8082, http://localhost:8123, http://localhost:8099
+          wait-on: http://localhost:8082/swagger-ui/index.html, http://localhost:8123, http://localhost:8099
         env:
           CYPRESS_RECORD_KEY: 6247b4f2-11c6-46cd-b4da-518694559bff
 
