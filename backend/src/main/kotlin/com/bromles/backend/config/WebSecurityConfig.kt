@@ -37,7 +37,7 @@ class WebSecurityConfig {
 //                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 //                    .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
 //                    .antMatchers("/book/*/img", "/book/*/file").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
             }
             .oauth2ResourceServer { resourceServerConfigurer ->
                 resourceServerConfigurer
