@@ -19,24 +19,6 @@ services:
         limits:
           memory: 512M
 
-  search_engine:
-    container_name: search_engine
-    image: getmeili/meilisearch:v0.30
-    volumes:
-      - meili_data:/data/meili_data
-    depends_on:
-      - database
-    restart: unless-stopped
-    environment:
-      MEILI_MASTER_KEY: masterKey
-      MEILI_NO_ANALYTICS: "true"
-    ports:
-      - "7123:7700"
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-
   auth_server:
     container_name: auth_server
     image: quay.io/keycloak/keycloak:20.0.1
@@ -66,11 +48,9 @@ services:
     container_name: backend
     image: home_library
     environment:
-      DB_URL: "jdbc:postgresql://database/backend_db"
+      DB_URL: "jdbc:postgresql://database:5432/backend_db"
       DB_USERNAME: "library"
       DB_PASSWORD: "password"
-      SEARCH_ENGINE_URL: "http://search_engine:7070"
-      SEARCH_ENGINE_KEY: "masterKey"
       AUTH_SERVER_JWKS_URL: "http://auth_server:8099/realms/home_library/protocol/openid-connect/certs"
       AUTH_SERVER_URL: "http://auth_server:8099"
       AUTH_SERVER_GRANT_TYPE: "client_credentials"
@@ -82,7 +62,6 @@ services:
       - backend/.env
     depends_on:
       - database
-      - search_engine
       - auth_server
     restart: unless-stopped
     deploy:
