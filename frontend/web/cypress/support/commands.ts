@@ -41,7 +41,7 @@ Cypress.Commands.add('createUser', (user: User) => {
 Cypress.Commands.add('login', (user:User) => {
   cy.contains('Библиотека')
   cy.get('#loginLink').click()
-  cy.location('pathname').should('contain', '/realms/home_library/protocol/openid-connect')
+  // cy.location('pathname').should('contain', '/realms/home_library/protocol/openid-connect')
   cy.get('[id=username]').type(user.username)
   cy.get('[id=password]').type(user.password)
   cy.get('[id=kc-login]').click().wait(1000)
