@@ -18,3 +18,8 @@ export default defineConfig({
   }
   
 })
+
+module.exports = {
+  projectId: "y4e16v",
+  // The rest of the Cypress config options go here...
+}
