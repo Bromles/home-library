@@ -1,6 +1,12 @@
-describe('My First Test', () => {
-  it('Visits the initial project page', () => {
+describe('Login and Logout', () => {
+  it('Login', () => {
     cy.visit('/')
-    cy.contains('Библиотека')
+    cy.login()
+  })
+
+  it('Logout', () => {
+    cy.visit('/')
+    cy.login()
+    cy.logout()
   })
 })
