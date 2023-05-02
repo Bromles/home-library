@@ -34,9 +34,9 @@ class WebSecurityConfig {
             .csrf().disable()
             .authorizeRequests { authorizeRequests ->
                 authorizeRequests
-                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                    .antMatchers("/book/*/img", "/book/*/file").permitAll()
+//                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                    .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+//                    .antMatchers("/book/*/img", "/book/*/file").permitAll()
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { resourceServerConfigurer ->
