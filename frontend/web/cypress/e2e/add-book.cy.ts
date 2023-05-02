@@ -4,11 +4,6 @@ describe('Add book', () => {
 
   let user = new User('test', 'test');
 
-  // before('Auth user', () => {
-  //   cy.visit('/')
-  //   cy.createUser(user)
-  // })
-
   beforeEach('Login', () => {
     cy.visit('/')
     cy.login(user)
@@ -25,11 +20,11 @@ describe('Add book', () => {
     cy.get('input[type=file]').first().selectFile('cypress/fixtures/files/test.pdf', {force: true})
     cy.get('input[type=file]').last().selectFile('cypress/fixtures/images/img.png', {force: true})
     cy.get('#tags > .p-dropdown > .p-dropdown-trigger').click()
-    cy.get('[ng-reflect-label="tag1"] > .p-ripple').click()
+    cy.get('#pr_id_1_list').first().click()
     cy.get('#categories > .p-dropdown > .p-dropdown-trigger').click()
-    cy.get('[ng-reflect-label="c1"] > .p-ripple').click()
+    cy.get('#pr_id_2_list').first().click()
     cy.get('#year').type('2001-01-01')
-    cy.get('#addBook > .p-ripple').click().wait(5000)
+    cy.get('#addBook > .p-ripple').click()
     cy.location('pathname').should('eq', '/books')
     cy.contains('Book Name')
   })
@@ -39,12 +34,12 @@ describe('Add book', () => {
     cy.get('#author').type('nv')
     cy.get('input[type=file]').first().selectFile('cypress/fixtures/files/test.pdf', {force: true})
     cy.get('input[type=file]').last().selectFile('cypress/fixtures/images/img.png', {force: true})
-    cy.get('#tags > .p-dropdown > .p-dropdown-trigger').click().wait(5000)
+    cy.get('#tags > .p-dropdown > .p-dropdown-trigger').click()
     cy.get('[ng-reflect-label="tag1"] > .p-ripple').click()
-    cy.get('#categories > .p-dropdown > .p-dropdown-trigger').click().wait(5000)
+    cy.get('#categories > .p-dropdown > .p-dropdown-trigger').click()
     cy.get('[ng-reflect-label="c1"] > .p-ripple').click()
     cy.get('#year').type('2001-01-01')
-    cy.get('#addBook > .p-ripple').click().wait(5000)
+    cy.get('#addBook > .p-ripple').click()
     cy.location('pathname').should('eq', '/add-book')
   })
 
