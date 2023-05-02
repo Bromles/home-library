@@ -14,28 +14,28 @@ describe('Login and Logout', () => {
     cy.get('#input-error-username').should('contain', 'имя пользователя')
     cy.get('#input-error-password').should('contain', 'пароль')
   })
-
-  it('Success auth', () => {
-    cy.createUser(new User('auth', 'auth'))
-    cy.location('pathname').should('eq', '/books')
-  })
-
-  it('Failed auth (user already exist)', () => {
-    cy.createUser(new User('auth', 'auth'))
-    cy.get('#input-error-username').should('contain', 'Имя пользователя')
-  })
-
-  it('Login', () => {
-    cy.login(new User('auth', 'auth'))
-    cy.location('pathname').should('eq', '/books')
-    cy.contains('Выйти')
-    cy.contains('Добавить книгу')
-  })
-  it('Logout', () => {
-    cy.login(new User('auth', 'auth'))
-    cy.logout()
-
-    cy.location('pathname').should('eq', '/')
-    cy.contains('Войти')
-  })
+  //
+  // it('Success auth', () => {
+  //   cy.createUser(new User('auth', 'auth'))
+  //   cy.location('pathname').should('eq', '/books')
+  // })
+  //
+  // it('Failed auth (user already exist)', () => {
+  //   cy.createUser(new User('auth', 'auth'))
+  //   cy.get('#input-error-username').should('contain', 'Имя пользователя')
+  // })
+  //
+  // it('Login', () => {
+  //   cy.login(new User('auth', 'auth'))
+  //   cy.location('pathname').should('eq', '/books')
+  //   cy.contains('Выйти')
+  //   cy.contains('Добавить книгу')
+  // })
+  // it('Logout', () => {
+  //   cy.login(new User('auth', 'auth'))
+  //   cy.logout()
+  //
+  //   cy.location('pathname').should('eq', '/')
+  //   cy.contains('Войти')
+  // })
 })

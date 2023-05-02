@@ -22,6 +22,7 @@ Cypress.Commands.add('openRegisterForm', () => {
   cy.location('pathname').should('contain', '/realms/home_library/protocol/openid-connect')
   cy.get('span > a').click().wait(100)
   cy.location('pathname').should('contain', '/realms/home_library/login-actions/registration')
+  cy.get('.pf-c-dropdown__menu-item').first().click( {force: true})
 })
 
 Cypress.Commands.add('createUser', (user: User) => {
