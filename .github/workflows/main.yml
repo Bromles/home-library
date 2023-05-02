@@ -38,5 +38,6 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: 6247b4f2-11c6-46cd-b4da-518694559bff
       - name: Dump docker logs on failure
+        if: failure()
         uses: jwalton/gh-docker-logs@v2
 
