@@ -8,6 +8,7 @@ export default defineConfig({
   // video: false,
   // screenshotOnRunFailure: false,
   defaultCommandTimeout: 30000,
+  projectId: "y4e16v",
   
   component: {
     devServer: {
@@ -18,8 +19,3 @@ export default defineConfig({
   }
   
 })
-
-module.exports = {
-  projectId: "y4e16v",
-  // The rest of the Cypress config options go here...
-}
