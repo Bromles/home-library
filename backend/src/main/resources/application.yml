@@ -35,8 +35,8 @@ spring:
         dialect: ${DB_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
         format_sql: true
   liquibase:
-    enabled: false
     change-log: classpath:db/changelog/changelog.yaml
+    dropFirst: true
   servlet:
     multipart:
       max-file-size: 200MB

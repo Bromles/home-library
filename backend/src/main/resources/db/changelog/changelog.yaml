@@ -210,4 +210,26 @@ databaseChangeLog:
               - column:
                   name: keycloak_id
                   type: uuid
+  - changeSet:
+      id: insert-example
+      author: liquibase-docs
+      changes:
+        - insert:
+            tablename: tag
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: tag1
+        - insert:
+            tablename: category
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: c1
 
