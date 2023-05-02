@@ -50,6 +50,3 @@ logging:
     web: info
     org.springframework: DEBUG
     org.springframework.boot.autoconfigure: error
-    org.hibernate: info
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
