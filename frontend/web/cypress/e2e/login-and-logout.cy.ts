@@ -31,6 +31,7 @@ describe('Login and Logout', () => {
     cy.contains('Выйти')
     cy.contains('Добавить книгу')
   })
+
   it('Logout', () => {
     cy.login(new User('auth', 'auth'))
     cy.logout()
