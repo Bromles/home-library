@@ -12,6 +12,9 @@ declare global {
       openRegisterForm(): Chainable<JQuery>
 
       createUser(user: User): Chainable<JQuery>
+
+      addUserBook(user: User): Chainable<JQuery>
+
     }
   }
 }
@@ -35,6 +38,22 @@ Cypress.Commands.add('createUser', (user: User) => {
   cy.get('#password').type(user.password)
   cy.get('#password-confirm').type(user.password)
   cy.get('.pf-c-button').click().wait(100)
+})
+
+Cypress.Commands.add('addUserBook', (user: User) => {
+  let r = (Math.random() + 1).toString(36).substring(7);
+  cy.get('#name').type('Book of ' + user.username)// + ' #' + r)
+  cy.get('#author').type('author')
+  cy.get('input[type=file]').first().selectFile('cypress/fixtures/files/test.pdf', {force: true})
+  cy.get('input[type=file]').last().selectFile('cypress/fixtures/images/img.png', {force: true})
+  cy.get('#tags > .p-dropdown > .p-dropdown-trigger').click()
+  cy.get('#pr_id_1_list').first().click()
+  cy.get('#categories > .p-dropdown > .p-dropdown-trigger').click()
+  cy.get('#pr_id_2_list').first().click()
+  cy.get('#year').type('2001-01-01')
+  cy.get('#addBook > .p-ripple').click()
+  cy.location('pathname').should('eq', '/books')
+  cy.contains('Book of ' + user.username)
 })
 
 

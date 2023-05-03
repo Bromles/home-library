@@ -3,6 +3,7 @@
 <div id="outerContainer">
   <div class="pdf-container">
     <pdf-viewer src="{{url}}book/{{bookId}}/file"
+                id="PDFViewer"
                 [render-text]="true"
                 [original-size]="false"
                 [fit-to-page]="false"
@@ -12,6 +13,6 @@
                 [show-borders] = "true"
                 (error)="onError($event)"
     ></pdf-viewer>
-    <button pButton pRipple type="button" icon="pi pi-times" class=" close-button p-button-rounded p-button-danger" routerLink="/books/{{bookId}}"></button>
+    <button pButton pRipple id="exitPDF" type="button" icon="pi pi-times" class=" close-button p-button-rounded p-button-danger" routerLink="/books/{{bookId}}"></button>
   </div>
 </div>
