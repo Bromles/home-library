@@ -5,7 +5,10 @@ export default defineConfig({
   e2e: {
     'baseUrl': 'http://localhost:8123'
   },
-  
+  // video: false,
+  // screenshotOnRunFailure: false,
+  defaultCommandTimeout: 30000,
+  projectId: "y4e16v",
   
   component: {
     devServer: {

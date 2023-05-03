@@ -32,4 +32,12 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: frontend/web/
+          browser: chrome
+          record: true
+          wait-on: http://localhost:8082/tags/1, http://localhost:8123, http://localhost:8099
+        env:
+          CYPRESS_RECORD_KEY: 6247b4f2-11c6-46cd-b4da-518694559bff
+      - name: Dump docker logs on failure
+        if: failure()
+        uses: jwalton/gh-docker-logs@v2
 

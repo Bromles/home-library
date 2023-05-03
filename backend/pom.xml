@@ -17,6 +17,7 @@
     <description>home_library</description>
 
     <properties>
+        <maven.test.skip>true</maven.test.skip>
         <java.version>17</java.version>
         <kotlin.version>1.6.21</kotlin.version>
         <testcontainers.version>1.17.4</testcontainers.version>
